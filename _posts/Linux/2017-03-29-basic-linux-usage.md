@@ -6,18 +6,18 @@ category: Linux
 
 
 ## ls 
-查看某一个目录的完整属性，而不是显示目录里面的文件属性：
-$ ls -dl <目录名>
+查看某一个目录的完整属性，而不是显示目录里面的文件属性：  
+	$ ls -dl <目录名>
 
 Pasted from <https://www.shiyanlou.com/courses/1/labs/3/document>  
 
 ## 添加用户sudo组
 这里我用 shiyanlou 用户执行 sudo 命令将 lilei 添加到 sudo 用户组，让它也可以使用 sudo 命令获得 root 权限  
-`sudo adduser lilei`   
-`$ su - root`   
-`$ groups lilei`  
-`$ sudo usermod -G sudo lilei`  
-`$ groups lilei`  
+	sudo adduser lilei   
+	$ su - root   
+	$ groups lilei  
+	$ sudo usermod -G sudo lilei  
+	$ groups lilei  
 然后你再切换回 lilei 用户，现在就可以使用 sudo 获取 root 权限了。
 
 ## mkdir
