@@ -239,10 +239,11 @@ tr好奇怪， 用管道的方式可以转化大小写 直接用怎么不行呢�
 1、在《文件打包与解压缩》一节实验中提到 Windows/dos 与 Linux/UNIX 文本文件一些特殊字符不一致，如断行符 Windows 为 CR+LF(\r\n)，Linux/UNIX 为 LF(\n)。使用cat -A 文本 可以看到文本中包含的不可见特殊字符。Linux 的\n表现出来就是一个$，而 Windows/dos 的表现为^M$，可以直接使用dos2unix和unix2dos工具在两种格式之间进行转换，使用file命令可以查看文件的具体类型。不过现在希望你在不使用上述两个转换工具的情况下，使用前面学过的命令手动完成 dos 文本格式到 UNIX 文本格式的转换。
 
 ## 重定向
-文件描述符	设备文件	说明
-0	/dev/stdin	标准输入
-1	/dev/stdout	标准输出
-2	/dev/stderr	标准错误
+文件描述符|设备文件|说明
+---	|---	|---
+0	|/dev/stdin|	标准输入
+1	|/dev/stdout|	标准输出
+2	|/dev/stderr	|标准错误
 
 新建文件 EOF结束：
 
@@ -312,23 +313,25 @@ tee 对文件叠加：
 
 
 ## kill
-其中常用的有这些信号值
-信号值	作用
--1	重新读取参数运行，类似与restart
--2	如同 ctrl+c 的操作退出
--9	强制终止该任务
--15	正常的方式终止该任务
+其中常用的有这些信号值  
+信号值|作用
+---|---
+-1|	重新读取参数运行，类似与restart
+-2	|如同 ctrl+c 的操作退出
+-9	|强制终止该任务
+-15|	正常的方式终止该任务
 
 
 ## top
 ### 我们看到 top 显示的第一排
 
- 内容	解释
-top	表示当前程序的名称
-11:05:18	表示当前的系统的时间
-up 8 days,17:12	表示该机器已经启动了多长时间
-1 user	表示当前系统中只有一个用户
-load average: 0.29,0.20,0.25	分别对应1、5、15分钟内cpu的平均负载
+|内容|解释
+---|---
+top|	表示当前程序的名称
+11:05:18|	表示当前的系统的时间
+up 8 days,17:12|	表示该机器已经启动了多长时间
+1 user	|表示当前系统中只有一个用户
+load average: 0.29,0.20,0.25	|分别对应1、5、15分钟内cpu的平均负载
 
 我们该如何看待这个load average 数据呢？  
 假设我们的系统是单CPU单内核的，把它比喻成是一条单向的桥，把CPU任务比作汽车。  
@@ -353,65 +356,75 @@ load average: 0.29,0.20,0.25	分别对应1、5、15分钟内cpu的平均负载
 
 通常我们都会先看 15 分钟的值来看这个大体的趋势，然后再看 5 分钟的值对比来看是否有下降的趋势。  
 ### 我们回归正题，来看 top 的第二行数据，基本上第二行是进程的一个情况统计
-内容	解释  
-Tasks: 26 total	进程总数  
-1 running	1个正在运行的进程数  
-25 sleeping	25个睡眠的进程数  
-0 stopped	没有停止的进程数  
-0 zombie	没有僵尸进程数  
+内容|解释
+---|---  
+Tasks: 26 total|	进程总数  
+1 running	|1个正在运行的进程数  
+25 sleeping	|25个睡眠的进程数  
+0 stopped	|没有停止的进程数  
+0 zombie	|没有僵尸进程数  
 
 ### 来看 top 的第三行数据，这一行基本上是 CPU 的一个使用情况的统计了
-内容	解释  
-Cpu(s): 1.0%us	用户空间占用CPU百分比  
-1.0% sy	内核空间占用CPU百分比  
-0.0%ni	用户进程空间内改变过优先级的进程占用CPU百分比  
-97.9%id	空闲CPU百分比  
-0.0%wa	等待输入输出的CPU时间百分比  
-0.1%hi	硬中断(Hardware IRQ)占用CPU的百分比  
-0.0%si	软中断(Software IRQ)占用CPU的百分比  
-0.0%st	(Steal time) 是当 hypervisor 服务另一个虚拟处理器的时候，虚拟 CPU 等待实际 CPU 的时间的百分比  
+内容	|解释
+---|---  
+Cpu(s): 1.0%us	|用户空间占用CPU百分比  
+1.0% sy	|内核空间占用CPU百分比  
+0.0%ni	|用户进程空间内改变过优先级的进程占用CPU百分比  
+97.9%id	|空闲CPU百分比  
+0.0%wa	|等待输入输出的CPU时间百分比  
+0.1%hi	|硬中断(Hardware IRQ)占用CPU的百分比  
+0.0%si	|软中断(Software IRQ)占用CPU的百分比  
+0.0%st	|(Steal time) 是当 hypervisor 服务另一个虚拟处理器的时候，虚拟 CPU 等待实际 CPU 的时间的百分比    
+ 
 CPU 利用率，是对一个时间段内 CPU 使用状况的统计，通过这个指标可以看出在某一个时间段内 CPU 被占用的情况，Load Average 是 CPU 的 Load，它所包含的信息不是 CPU 的使用率状况，而是在一段时间内 CPU 正在处理以及等待 CPU 处理的进程数情况统计信息，这两个指标并不一样。  
 ### 来看 top 的第四行数据，这一行基本上是内存的一个使用情况的统计了
-内容	解释  
-8176740 total	物理内存总量  
-8032104 used	使用的物理内存总量  
-144636 free	空闲内存总量  
-313088 buffers	用作内核缓存的内存量  
+内容|解释 
+---|--- 
+8176740 total	|物理内存总量  
+8032104 used	|使用的物理内存总量  
+144636 free	|空闲内存总量  
+313088 buffers	|用作内核缓存的内存量  
+
 注意  
 系统的中可用的物理内存最大值并不是 free 这个单一的值，而是 free + buffers + swap 中的 cached 的和  
 ### 来看 top 的第五行数据，这一行基本上是交换区的一个使用情况的统计了
-内容	解释  
-total	交换区总量  
-used	使用的交换区总量  
-free	空闲交换区总量  
-cached	缓冲的交换区总量,内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖  
+内容	|解释  
+---|---
+total	|交换区总量  
+used	|使用的交换区总量  
+free	|空闲交换区总量  
+cached|	缓冲的交换区总量,内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖  
 ### 在下面就是进程的一个情况了
-列名	解释  
-PID	进程id  
-USER	该进程的所属用户  
-PR	该进程执行的优先级priority 值  
-NI	该进程的 nice 值  
-VIRT	该进程任务所使用的虚拟内存的总数  
-RES	该进程所使用的物理内存数，也称之为驻留内存数  
-SHR	该进程共享内存的大小  
-S	该进程进程的状态: S=sleep R=running Z=zombie  
-%CPU	该进程CPU的利用率  
-%MEM	该进程内存的利用率  
-TIME+	该进程活跃的总时间  
-COMMAND	该进程运行的名字  
+列名	|解释  
+---|---
+PID	|进程id  
+USER	|该进程的所属用户  
+PR	|该进程执行的优先级priority 值  
+NI	|该进程的 nice 值  
+VIRT	|该进程任务所使用的虚拟内存的总数  
+RES	|该进程所使用的物理内存数，也称之为驻留内存数  
+SHR	|该进程共享内存的大小  
+S	|该进程进程的状态: S=sleep R=running Z=zombie  
+%CPU	|该进程CPU的利用率  
+%MEM	|该进程内存的利用率  
+TIME+	|该进程活跃的总时间  
+COMMAND	|该进程运行的名字  
+
 注意  
 NICE 值叫做静态优先级，是用户空间的一个优先级值，其取值范围是-20至19。这个值越小，表示进程”优先级”越高，而值越大“优先级”越低。nice值中的 -20 到 19，中 -20 优先级最高， 0 是默认的值，而 19 优先级最低  
 PR 值表示 Priority 值叫动态优先级，是进程在内核中实际的优先级值，进程优先级的取值范围是通过一个宏定义的，这个宏的名称是MAX_PRIO，它的值为140。Linux实际上实现了140个优先级范围，取值范围是从0-139，这个值越小，优先级越高。而这其中的 0 - 99 是实时的值，而 100 - 139 是给用户的。  
 其中 PR 中的 100 to 139 值部分有这么一个对应 PR = 20 + (-20 to +19)，这里的 -20 to +19 便是nice值，所以说两个虽然都是优先级，而且有千丝万缕的关系，但是他们的值，他们的作用范围并不相同  
 VIRT 任务所使用的虚拟内存的总数，其中包含所有的代码，数据，共享库和被换出 swap空间的页面等所占据空间的总数  
 ### 在上文我们曾经说过 top 是一个前台程序，所以是一个可以交互的  
-常用交互命令	解释  
-q	退出程序  
-I	切换显示平均负载和启动时间的信息  
-P	根据CPU使用百分比大小进行排序  
-M	根据驻留内存大小进行排序  
-i	忽略闲置和僵死的进程，这是一个开关式命令  
-k	终止一个进程，系统提示输入 PID 及发送的信号值。一般终止进程用15信号，不能正常结束则使用9信号。安全模式下该命令被屏蔽。  
+常用交互命令|解释  
+---|---
+q|退出程序  
+I|切换显示平均负载和启动时间的信息  
+P|根据CPU使用百分比大小进行排序  
+M|根据驻留内存大小进行排序  
+i|忽略闲置和僵死的进程，这是一个开关式命令  
+k|终止一个进程，系统提示输入 PID 及发送的信号值。一般终止进程用15信号，不能正常结束则使用9信号。安全模式下该命令被屏蔽。  
+
 好好的利用 top 能够很有效的帮助我们观察到系统的瓶颈所在，或者是系统的问题所在  
 ## ps
 
@@ -421,20 +434,21 @@ k	终止一个进程，系统提示输入 PID 及发送的信号值。一般终�
 
 TPGID栏写着-1的都是没有控制终端的进程，也就是守护进程  
 STAT表示进程的状态，而进程的状态有很多，如下表所示  
-状态	解释  
-R	Running.运行中  
-S	Interruptible Sleep.等待调用  
-D	Uninterruptible Sleep.不可终端睡眠  
-T	Stoped.暂停或者跟踪状态  
-X	Dead.即将被撤销  
-Z	Zombie.僵尸进程  
-W	Paging.内存交换  
-N	优先级低的进程  
-<	优先级高的进程  
-s	进程的领导者  
-L	锁定状态  
-l	多线程状态  
-+	前台进程  
+状态	|解释  
+---|---
+R|Running.运行中
+S|Interruptible Sleep.等待调用
+D|Uninterruptible Sleep.不可终端睡眠  
+T|Stoped.暂停或者跟踪状态  
+X|Dead.即将被撤销  
+Z|Zombie.僵尸进程  
+W|Paging.内存交换  
+N|优先级低的进程  
+<|优先级高的进程  
+s|进程的领导者  
+L|锁定状态  
+l|多线程状态  
+\+|前台进程  
 
 
 ## pstree
@@ -473,20 +487,23 @@ rsyslog 结构框架:
 ![](http://i.imgur.com/Y4R2QID.png)
 
 第一个模块便是 Input，该模块的主要功能就是从各种各样的来源出收集 messages，通过一下这些接口实现  
-接口名	作用  
-im3195	RFC3195 Input Module  
-imfile	Text File Input Module  
-imgssapi	GSSAPI Syslog Input Module  
-imjournal	Systemd Journal Input Module  
-imklog	Kernel Log Input Module  
-imkmsg	/dev/kmsg Log Input Module  
-impstats	Generate Periodic Statistics of Internal Counters  
-imptcp	Plain TCP Syslog  
-imrelp	RELP Input Module  
-imsolaris	Solaris Input Module  
-imtcp	TCP Syslog Input Module  
-imudp	UDP Syslog Input Module  
-imuxsock	Unix Socket Input  
+
+接口名|作用  
+---|---
+im3195	|RFC3195 Input Module  
+imfile	|Text File Input Module  
+imgssapi	|GSSAPI Syslog Input Module  
+imjournal	|Systemd Journal Input Module  
+imklog	|Kernel Log Input Module  
+imkmsg	|/dev/kmsg Log Input Module  
+impstats	|Generate Periodic Statistics of Internal Counters  
+imptcp	|Plain TCP Syslog  
+imrelp	|RELP Input Module  
+imsolaris|	Solaris Input Module  
+imtcp	|TCP Syslog Input Module  
+imudp	|UDP Syslog Input Module  
+imuxsock	|Unix Socket Input  
+
 而这些模块接口的使用需要通过 $ModLoad 指令来加载，那么返回上文的图中，配置生效的头两行可以看懂了，默认加载了 imklog、imuxsock 这两个模块   
 ![](http://i.imgur.com/sX7zUrm.png)  
 在配置中 rsyslog 支持三种配置语法格式：  
@@ -503,29 +520,34 @@ sysklogd 是老的简单格式，一些新的语法特性不支持。而 legacy 
 legacy 格式使用 $template 的语法，不过这个在以后要移除，所以最好使用新格式 template(),以免未来突然不工作了也不知道为什么  
 模板定义的形式有四种，适用于不同的输出模块，一般简单的格式，可以使用 string 的形式，复杂的格式，建议使用 list 的形式，使用 list 的形式，可以使用一些额外的属性字段（property statement）  
 rsyslog 通过 Facility 的概念来定义日志消息的来源，以便对日志进行分类，Facility 的种类有：  
-类别	解释  
-kern	内核消息  
-user	用户信息  
-mail	邮件系统消息  
-daemon	系统服务消息  
-auth	认证系统  
-authpriv	权限系统   
-syslog	日志系统自身消息  
-cron	计划安排  
-news	新闻信息  
-local0~7	由自定义程序使用  
-而另外一部分 priority 也称之为 serverity level，除了日志的来源以外，对统一源产生日志消息还需要进行优先级的划分，而优先级的类别有一下几种：  
-类别	解释  
-emergency	系统已经无法使用了  
-alert	必须立即处理的问题  
-critical	很严重了  
-error	错误  
-warning	警告信息  
-notice	系统正常，但是比较重要  
-informational	正常  
-debug	debug的调试信息  
-panic	很严重但是已淘汰不常用  
-none	没有优先级，不记录任何日志消息  
+
+类别	|解释  
+---|---
+kern	|内核消息  
+user	|用户信息  
+mail	|邮件系统消息  
+daemon	|系统服务消息  
+auth	|认证系统  
+authpriv	|权限系统   
+syslog	|日志系统自身消息  
+cron	|计划安排  
+news	|新闻信息  
+local0~7	|由自定义程序使用  
+
+而另外一部分 priority 也称之为 serverity level，除了日志的来源以外，对统一源产生日志消息还需要进行优先级的划分，而优先级的类别有一下几种：   
+
+类别	|解释  
+---|---
+emergency	|系统已经无法使用了  
+alert	|必须立即处理的问题  
+critical	|很严重了  
+error	|错误  
+warning	|警告信息  
+notice	|系统正常，但是比较重要  
+informational	|正常  
+debug	|debug的调试信息  
+panic	|很严重但是已淘汰不常用  
+none	|没有优先级，不记录任何日志消息  
   
 auth,authpriv.*       /var/log/auth.log  
 这里的意思是 auth 与 authpriv 的所有优先级的信息全都输出于 /var/log/auth.log 日志中  
