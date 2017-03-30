@@ -9,6 +9,7 @@ category: Linux
 查看某一个目录的完整属性，而不是显示目录里面的文件属性：  
 
     $ ls -dl <目录名>
+
 ## 添加用户sudo组
 这里我用 shiyanlou 用户执行 sudo 命令将 lilei 添加到 sudo 用户组，让它也可以使用 sudo 命令获得 root 权限  
 
@@ -17,11 +18,13 @@ category: Linux
 	$ groups lilei  
 	$ sudo usermod -G sudo lilei  
 	$ groups lilei  
+
 然后你再切换回 lilei 用户，现在就可以使用 sudo 获取 root 权限了。
 ## mkdir
 使用 -p 参数，同时创建父目录（如果不存在该父目录），如下我们同时创建一个多级目录（这在有时候安装软件，配置安装路径时非常有用）：
 
 	$ mkdir -p father/son/grandson
+
 ## 批量修改文件名
 使用通配符批量创建 5 个文件   
 
@@ -30,32 +33,40 @@ category: Linux
 	$ rename 's/\.txt/\.c/' *.txt`  
 	#批量将这 5 个文件，文件名改为大写`
 	$ rename 'y/a-z/A-Z/' *.c`  
+
 ## 变量删除
 可以使用unset命令删除一个环境变量：  
 
 	$ unset temp
+
 ## 如何让环境变量立即生效
 在上面我们在 Shell 中修改了一个配置脚本文件之后（比如 zsh 的配置文件 home 目录下的.zshrc），每次都要退出终端重新打开甚至重启主机之后其才能生效，很是麻烦，我们可以使用source命令来让其立即生效，如：  
 
 	$ source .zshrc
+
 source命令还有一个别名就是.，注意与表示当前路径的那个点区分开，虽然形式一样，但作用和使用方式一样，上面的命令如果替换成.的方式就该是   
 
 	$ . ./.zshrc  
+
 注意第一个点后面有一个空格，而且后面的文件必须指定完整的绝对或相对路径名，source 则不需要。
 ## tar
 只查看不解包文件-t参数：  
 
 	$ tar -tf shiyanlou.tar
+
 保留文件属性和跟随链接（符号链接或软链接），有时候我们使用tar备份文件当你在其他主机还原时希望保留文件的属性(-p参数)和备份链接指向的源文件而不是链接本身(-h参数)：
 
 	$ tar -cphf etc.tar /etc
+
 对于创建不同的压缩格式的文件，对于tar来说是相当简单的，需要的只是换一个参数，这里我们就以使用gzip工具创建`*.tar.gz`文件为例来说明。  
 我们只需要在创建 tar 文件的基础上添加-z参数，使用gzip来压缩文件： 
  
 	$tar -czf shiyanlou.tar.gz ~ 
+
 解压*.tar.gz文件： 
  
 	$ tar -xzf shiyanlou.tar.gz 
+
 现在我们要使用其他的压缩工具创建或解压相应文件只需要更改一个参数即可：  
 压缩文件格式	参数  
 
@@ -69,9 +80,11 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
 输出到文件:  
 
 	$ dd of=test bs=10 count=1  # 或者 dd if=/dev/stdin of=test bs=10 count=1 
+
 输出到标准输出: 
  
 	$ dd if=/dev/stdin of=/dev/stdout bs=10 count=1
+
 上述命令从标准输入设备读入用户输入（缺省值，所以可省略）然后输出到 test 文件，bs（block size）用于指定块大小（缺省单位为 Byte，也可为其指定如'K'，'M'，'G'等单位），count用于指定块数量。
 
 	type exit 
@@ -86,9 +99,11 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
 在本实验环境中 crontab 也是不被默认启动的，同时不能在后台由 upstart 来管理，所以需要我们来启动它（同样在本实验环境中需要手动启动，自己的本地 Ubuntu 的环境中也不需要手动启动）
 
 	sudo cron －f &
+
 下面将开始 crontab 的使用了，我们通过下面一个命令来添加一个计划任务
 
 	crontab -e
+
 ![](http://i.imgur.com/gQPiWx5.png)
 在了解命令格式之后，我们通过这样的一个例子来完成一个任务的添加，在文档的最后一排加上这样一排命令,该任务是每分钟我们会在/home/shiyanlou目录下创建一个以当前的年月日时分秒为名字的空白文件
 
@@ -101,6 +116,7 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
 当我们并不需要这个任务的时候我们可以使用这么一个命令去删除任务
 
 	crontab -r
+
 这个 crontab -e 是针对使用者的 cron 來设计的，也就是每个用户在添加任务，就会在 /var/spool/cron/crontabs 中添加一个该用户自己的任务文档，这样可以做到隔离，独立，不会混乱。
 
 如果是系統的例行性任務時，该怎么办呢？是否还是需要以 crontab -e 來管理你的例行性工作排程呢？当然不需要，你只要编辑 /etc/crontab 這個档案就可以啦！有一點需要特別注意喔！那就是 crontab -e 這個 crontab 其实是 /usr/bin/crontab 这个执行的，只是你可以 root 的身份編輯一下这个文档！
@@ -123,15 +139,18 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
 	$ cut /etc/passwd -c 5
 	# 2到5之间的（包含第五个）
 	$ cut /etc/passwd -c 2-5
+
 ## grep
 还是先体验一下，我们搜索/home/shiyanlou目录下所有包含"shiyanlou"的所有文本文件，并显示出现在文本中的行号：
 
 	$ grep -rnI "shiyanlou" ~
 	grep -r 递归查找   -n打印行号  -I去除二进制文件
+
 当然也可以在匹配字段中使用正则表达式，下面简单的演示：
 
 	# 查看环境变量中以"yanlou"结尾的字符串
 	$ export | grep ".*yanlou$"
+
 其中$就表示一行的末尾。
 ## wc
 
@@ -155,12 +174,15 @@ wc 命令用于统计并输出一个文件中行、单词和字节的数目，�
 默认为字典排序：
 
 	$ cat /etc/passswd | sort
+
 反转排序：
 
 	$ cat /etc/passwd | sort -r
+
 按特定字段排序：
 
 	$ cat /etc/passwd | sort -t':' -k 3
+
 上面的-t参数用于指定字段的分隔符，这里是以":"作为分隔符；-k 字段号用于指定对哪一个字段进行排序。这里/etc/passwd文件的第三个字段为数字，默认情况下是一字典序排序的，如果要按照数字排序就要加上-n参数：
 
 	$ cat /etc/passwd | sort -t':' -k 3 -n
@@ -173,6 +195,7 @@ wc 命令用于统计并输出一个文件中行、单词和字节的数目，�
 我们可以使用history命令查看最近执行过的命令（实际为读取${SHELL}_history文件,如我们环境中的~/.zsh_history文件），不过你可能只想查看使用了那个命令而不需要知道具体干了什么，那么你可能就会要想去掉命令后面的参数然后去掉重复的命令：
 
 	$ history | cut -c 8- | cut -d ' ' -f 1 | uniq
+
 然后经过层层过滤，你会发现确是只输出了执行的命令那一列，不过去重效果好像不明显，仔细看你会发现它趋势去重了，只是不那么明显，之所以不明显是因为uniq命令只能去连续重复的行，不是全文去重，所以要达到预期效果，我们先排序：
 
 	$ history | cut -c 8- | cut -d ' ' -f 1 | sort | uniq
@@ -192,6 +215,7 @@ wc 命令用于统计并输出一个文件中行、单词和字节的数目，�
 	# 将输入文本，全部转换为大写或小写输出
 	$ cat /etc/passwd | tr '[:lower:]' '[:upper:]'
 	# 上面的'[:lower:]' '[:upper:]'你也可以简单的写作'[a-z]' '[A-Z]',当然反过来将大写变小写也是可以的
+
 tr好奇怪， 用管道的方式可以转化大小写 直接用怎么不行呢？tr -c ?后面接啥
 删除Windows文件“造成”的'^M'字符:
 
@@ -210,6 +234,7 @@ tr好奇怪， 用管道的方式可以转化大小写 直接用怎么不行呢�
 	$ cat -A /etc/protocols
 	# 使用 col -x 将 /etc/protocols 中的 Tab 转换为空格,然后再使用 cat 查看，你发现 ^I 不见了
 	$ cat /etc/protocols | col -x | cat -A
+
 ## dos2unix unix2dos
 1、在《文件打包与解压缩》一节实验中提到 Windows/dos 与 Linux/UNIX 文本文件一些特殊字符不一致，如断行符 Windows 为 CR+LF(\r\n)，Linux/UNIX 为 LF(\n)。使用cat -A 文本 可以看到文本中包含的不可见特殊字符。Linux 的\n表现出来就是一个$，而 Windows/dos 的表现为^M$，可以直接使用dos2unix和unix2dos工具在两种格式之间进行转换，使用file命令可以查看文件的具体类型。不过现在希望你在不使用上述两个转换工具的情况下，使用前面学过的命令手动完成 dos 文本格式到 UNIX 文本格式的转换。
 
@@ -229,12 +254,14 @@ tr好奇怪， 用管道的方式可以转化大小写 直接用怎么不行呢�
 	   return 0; 
 	} 
 	EOF
+
 那有的时候我们就是要可以隐藏某些错误或者警告，那又该怎么做呢。这就需要用到我们前面讲的文件描述符了：
 
 	# 将标准错误重定向到标准输出，再将标准输出重定向到文件，注意要将重定向到文件写到前面
 	$ cat Documents/test.c hello.c >somefile  2>&1
 	# 或者只用bash提供的特殊的重定向符号"&"将标准错误和标准输出同时重定向到文件
 	$ cat Documents/test.c hello.c &>somefilehell
+
 注意你应该在输出重定向文件描述符前加上&,否则shell会当做重定向到一个文件名为1的文件中
 
 使用tee命令同时重定向到多个文件
@@ -259,7 +286,6 @@ tee 对文件叠加：
 	$ cat somefile
 	我们可以利用设个/dev/null屏蔽命令的输出：
 	$ cat Documents/test.c nefile 1>/dev/null 2>&1
-
 
 ## xargs
 
@@ -324,6 +350,7 @@ load average: 0.29,0.20,0.25	分别对应1、5、15分钟内cpu的平均负载
 	• 若是 0.7< load < 1 的时候我们就需要稍微关注一下了，虽然还可以应付但是这个值已经离临界不远了；  
 	• 若是 load = 1 的时候我们就需要警惕了，因为这个时候已经没有更多的资源的了，已经在全力以赴了；  
 	• 若是 load > 5 的时候系统已经快不行了，这个时候你需要加班解决问题了  
+
 通常我们都会先看 15 分钟的值来看这个大体的趋势，然后再看 5 分钟的值对比来看是否有下降的趋势。  
 ### 我们回归正题，来看 top 的第二行数据，基本上第二行是进程的一个情况统计
 内容	解释  
@@ -539,6 +566,7 @@ logrotate 程序是一个日志文件管理工具。用来把旧的日志文件�
 	    create 0664 root utmp          //转储后文件不存在时创建它，文件所有者为root，所属组为utmp，对应的权限为0664
 	    rotate 1                       //最多转储一次
 	}
+
 当然在 /etc/logrotate.d/ 中有各项应用的 logrotate 配置，还有更多的配置参数，大家可以使用 man 查看，如按文件大小转储，按当前时间格式命名等等参数配置。  
 ## iptables 
 添加规则并查看：
@@ -555,7 +583,8 @@ logrotate 程序是一个日志文件管理工具。用来把旧的日志文件�
 	num  target     prot opt source               destination         
 	
 	Chain OUTPUT (policy ACCEPT)
-	num  target     prot opt source               destination      
+	num  target     prot opt source               destination   
+   
 删除规则并查看：
    
 	NDBTGT1-0-0-2:/root-# iptables -D INPUT 3
