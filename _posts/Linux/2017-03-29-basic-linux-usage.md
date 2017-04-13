@@ -434,8 +434,9 @@ k|终止一个进程，系统提示输入 PID 及发送的信号值。一般终�
 
 TPGID栏写着-1的都是没有控制终端的进程，也就是守护进程  
 STAT表示进程的状态，而进程的状态有很多，如下表所示  
+
 状态	|解释  
----|---
+---|---  
 R|Running.运行中
 S|Interruptible Sleep.等待调用
 D|Uninterruptible Sleep.不可终端睡眠  
