@@ -72,7 +72,7 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
 
 	*.tar.gz	-z 
 	*.tar.xz	-J 
-	*tar.bz2	-j
+	*.tar.bz2	-j
 
 ## dd
 我们先来试试用dd命令从标准输入读入用户输入到标准输出或者一个文件：  
@@ -95,7 +95,7 @@ source命令还有一个别名就是.，注意与表示当前路径的那个点�
  	xxx is /usr/sbin/xxx
  	#若是得到alias的结果，说明该指令为命令别名所设定的名称；
  	xxx is an alias for xx --xxx
-## Crontab
+## crontab
 在本实验环境中 crontab 也是不被默认启动的，同时不能在后台由 upstart 来管理，所以需要我们来启动它（同样在本实验环境中需要手动启动，自己的本地 Ubuntu 的环境中也不需要手动启动）
 
 	sudo cron －f &
