@@ -72,35 +72,35 @@ Question: in python help(file), don't know what this mean, what's non-blocking m
 **readline([size]), readlines([size])**
 
 readline默认每次读取一行，返回**string**；readlines默认循环读取行，直到EOF,返回**list**
-
-	[root@localhost ~]# cat file.test 
-	first line
-	Second line
-	2
-	3
-	4
+```python
+[root@localhost ~]# cat file.test 
+first line
+Second line
+2
+3
+4
 	
-	>>> f = open('file.test')
-	>>> f.readlines()
-	['first line\n', 'Second line\n', '2\n', '3\n', '4\n', '\n']
+>>> f = open('file.test')
+>>> f.readlines()
+['first line\n', 'Second line\n', '2\n', '3\n', '4\n', '\n']
 
-	>>> f.seek(0)
-	>>> f.readline()
-	'first line\n'
-	>>> f.readline(3)
-	'Sec'
-	>>> f.readline()
-	'ond line\n'
-	#当文件末尾时，分别返回空字符串和空列表：
-	>>> f.readlines()
-	['2\n', '3\n', '4\n', '\n']
+>>> f.seek(0)
+>>> f.readline()
+'first line\n'
+>>> f.readline(3)
+'Sec'
+>>> f.readline()
+'ond line\n'
+#当文件末尾时，分别返回空字符串和空列表：
+>>> f.readlines()
+['2\n', '3\n', '4\n', '\n']
 
-	>>> f.readline()
-	''
-	>>> f.readlines()
-	[]
-	>>> f.close()
-
+>>> f.readline()
+''
+>>> f.readlines()
+[]
+>>> f.close()
+```
 **注意：** readline的参数是指定读取的字符个数，readlines的参数，根据网上信息，如果给定参数的读取内容小于缓冲区8k，则取整，每次读取8k，如果大于8192，则读取指定参数大小的内容。  
 
 
