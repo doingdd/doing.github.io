@@ -1,6 +1,6 @@
 ---
-title: Linux 目录结构
 layout: post
+title: Linux 目录结构
 category: Linux
 ---
 
