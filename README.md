@@ -1,6 +1,6 @@
 ### 我的博客
 
-地址：[http://doing.cool](doing.cool)
+地址：[doing.cool](doing.cool)
 
 ### 安装说明
 
