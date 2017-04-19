@@ -1,7 +1,7 @@
 ---
 title: Python2和Python3的区别
-layout:post
-category:Python
+layout: post
+category: Python
 ---
 
 ### 本文来自公众号`Python开发者`的一篇文章，简单介绍了python2和python3主要区别。
