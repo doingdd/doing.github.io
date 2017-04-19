@@ -118,101 +118,102 @@ write方法的参数是单个string，在当前指针出插入一行，不自动
 	>>> f.close()
 
 发现个有意思的现象，注意read，readlines和readline在下面情况下的返回值区别：
-
-	>>> f = open('file.test', 'w+')
-	>>> f.write('Hello World!')
-	>>> f.read()
-	''
-	>>> f.seek(0)
-	>>> f.read()
-	'Hello World!'
-	>>> f.close()
-	>>> f = open('file.test', 'w+')
-	>>> f.write('Hello World!')
-	>>> f.readlines()
-	[]
-	>>> f.seek(0)
-	>>> f.readlines()
-	[]
-	>>> f.read()
-	''
-	>>> f = open('file.test', 'w+')
-	>>> f.write('Hello World!')
-	>>> f.readline()
-	''
-	>>> f.seek(0)
-	>>> f.readline()
-	'Hello World!'
-	#但是如果按如下执行，readlines又能读出数据：
-	>>> f = open('file.test', 'w+')
-	>>> f.write('Hello World!')
-	>>> f.seek(0)
-	>>> f.read()
-	'Hello World!'
-	>>> f.seek(0)
-	>>> f.readline()
-	'Hello World!'
-	>>> f.seek(0)
-	>>> f.readlines()
-	['Hello World!']
-
+```python
+>>> f = open('file.test', 'w+')
+>>> f.write('Hello World!')
+>>> f.read()
+''
+>>> f.seek(0)
+>>> f.read()
+'Hello World!'
+>>> f.close()
+>>> f = open('file.test', 'w+')
+>>> f.write('Hello World!')
+>>> f.readlines()
+[]
+>>> f.seek(0)
+>>> f.readlines()
+[]
+>>> f.read()
+''
+>>> f = open('file.test', 'w+')
+>>> f.write('Hello World!')
+>>> f.readline()
+''
+>>> f.seek(0)
+>>> f.readline()
+'Hello World!'
+#但是如果按如下执行，readlines又能读出数据：
+>>> f = open('file.test', 'w+')
+>>> f.write('Hello World!')
+>>> f.seek(0)
+>>> f.read()
+'Hello World!'
+>>> f.seek(0)
+>>> f.readline()
+'Hello World!'
+>>> f.seek(0)
+>>> f.readlines()
+['Hello World!']
+```
 也就是说，目前证实，在'w+'模式，write完之后，指针在文件末尾，直接跟readlines会导致当前的文件清空，不知道什么原因？
 
 **writelines(sequence_of_strings)**
 
 writelines的参数是一个序列，只能以变量名形式传入，不自动添加换行，实际上，他和readlines正好相反。
+```python
+>>> f = open('file.test', 'w')
+>>> f.writelines('a','b')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: writelines() takes exactly one argument (2 given)
 
-	>>> f = open('file.test', 'w')
-	>>> f.writelines('a','b')
-	Traceback (most recent call last):
-	  File "<stdin>", line 1, in <module>
-	TypeError: writelines() takes exactly one argument (2 given)
-	
-	>>> l = ['a', 'b', 'c']
-	>>> f.writelines(l)
-	>>> f.close()
-	>>> print open('file.test').read()
-	abc
-	>>> l.append('\n')
-	>>> l.insert(0, '\n')
-	>>> l
-	['\n', 'a', 'b', 'c', '\n']
-	>>> print open('file.test').read()
-	abc
-	abc
+>>> l = ['a', 'b', 'c']
+>>> f.writelines(l)
+>>> f.close()
+>>> print open('file.test').read()
+abc
+>>> l.append('\n')
+>>> l.insert(0, '\n')
+>>> l
+['\n', 'a', 'b', 'c', '\n']
+>>> print open('file.test').read()
+abc
+abc
+```
 ## 文件指针
 **seek(offset[, whence])**  
 seek用于调整文件的指针位置，可以理解成shell下vi的光标吧，read，write的操作都是基于当前光标位置做的。在前后的例子中已经多次用到seek方法。
 -offset -- 开始的偏移量，也就是代表需要移动偏移的字节数
 -whence：可选，默认值为 0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。      
-
-	[root@localhost ~]# cat file.test 
-	Hello World
-	To be or not to be
-	Is a question
-	[root@localhost ~]# python
-	Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
-	[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
-	Type "help", "copyright", "credits" or "license" for more information.
-	>>> f = open('file.test')
-	>>> f.read()
-	'Hello World\nTo be or not to be\nIs a question\n'
-	>>> f.seek(0)
-	>>> f.readline()
-	'Hello World\n'
-	>>> f.seek(5)
-	>>> f.readline()
-	' World\n'
-	>>> f.seek(5, 1)
-	>>> f.readline()
-	' or not to be\n'
-	>>> f.seek(8,2)
-	>>> f.readline()
-	''
-	>>> f.seek(-9,2)
-	>>> f.readline()
-	'question\n'
-
+```python
+[root@localhost ~]# cat file.test 
+Hello World
+To be or not to be
+Is a question
+[root@localhost ~]# python
+Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> f = open('file.test')
+>>> f.read()
+'Hello World\nTo be or not to be\nIs a question\n'
+>>> f.seek(0)
+>>> f.readline()
+'Hello World\n'
+>>> f.seek(5)
+>>> f.readline()
+' World\n'
+>>> f.seek(5, 1)
+>>> f.readline()
+' or not to be\n'
+>>> f.seek(8,2)
+>>> f.readline()
+''
+>>> f.seek(-9,2)
+>>> f.readline()
+'question\n'
+```
 **tell()**
 tell方法可以返回当前的指针位置，返回值为从文件开始到当前位置的字符个数：
 	
@@ -233,29 +234,28 @@ Question：“可能”写缓存是什么意思？在哪些情况下会缓存，
 
 **close()**  
 close()没有返回值，直接关闭文件，**注意**，如果不加括号的调用close不会真正关闭文件类，例如：
-
-	[root@localhost ~]# cat file.test 
-	abc
-	abc
-
+```python
+[root@localhost ~]# cat file.test 
+abc
+abc
 	[root@localhost ~]# python
-	Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
-	[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
-	Type "help", "copyright", "credits" or "license" for more information.
-	>>> f = open('file.test')
-	>>> f.read()
-	'abc\nabc\n'
-	>>> f.seek(0)
-    >>> f.close
-    <built-in method close of file object at 0x7fbc54b6c5d0>
-	>>> f.read()
-	'abc\nabc\n'
-	>>> f.close()
-	>>> f.read()
-	Traceback (most recent call last):
-	  File "<stdin>", line 1, in <module>
-	ValueError: I/O operation on closed file
-
+Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> f = open('file.test')
+>>> f.read()
+'abc\nabc\n'
+>>> f.seek(0)
+>>> f.close
+  <built-in method close of file object at 0x7fbc54b6c5d0>
+>>> f.read()
+'abc\nabc\n'
+>>> f.close()
+>>> f.read()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: I/O operation on closed file
+```
 **try...finally**
 
 	#Open your file here
@@ -295,23 +295,23 @@ __enter__方法返回值绑定在as后面的变量，本例中就是f类文件�
 
 	
 下面这种方法是**非显示的打开文件**，所以不能显示的关闭，需要依赖python负责关闭：
-
-	>>> f = open('file.test', 'w')
-	>>> f.write('First line\n')
-	>>> f.write('Second line\n')
-	>>> f.write('Third line\n')
-	>>> f.close()
-	>>> lines = list(open('file.test'))
-	>>> lines
-	['First line\n', 'Second line\n', 'Third line\n']
-	>>> first, second, third = open('file.test')
-	>>> first
-	'First line\n'
-	>>> second
-	'Second line\n'
-	>>> third
-	'Third line\n'
-	>>> print list(open('file.test'))
-	['First line\n', 'Second line\n', 'Third line\n']
-
+```python
+>>> f = open('file.test', 'w')
+>>> f.write('First line\n')
+>>> f.write('Second line\n')
+>>> f.write('Third line\n')
+>>> f.close()
+>>> lines = list(open('file.test'))
+>>> lines
+['First line\n', 'Second line\n', 'Third line\n']
+>>> first, second, third = open('file.test')
+>>> first
+'First line\n'
+>>> second
+'Second line\n'
+>>> third
+'Third line\n'
+>>> print list(open('file.test'))
+['First line\n', 'Second line\n', 'Third line\n']
+```
 当然，这两种迭代方式是针对读文件的，关于迭代器的详细内容留待继续学习。
