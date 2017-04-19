@@ -4,6 +4,7 @@ title: Linux 目录结构
 category: Linux
 ---
 
+
 **图片和总结来自[实验楼](https://www.shiyanlou.com/courses/1/labs/59/document)**
 
 Linux的目录使用FHS标准：
