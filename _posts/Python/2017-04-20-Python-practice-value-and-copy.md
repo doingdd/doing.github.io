@@ -39,7 +39,7 @@ python中变量的存储采用引用语义的方式，存储的只是一个变�
 顺便提一下，C语言不是这种方式，是值语义，即变量存储的就是一个值本身。
 所以，python变量的大小都是一样的，因为**内存地址**的大小一致。而C语言的变量大小是不固定的。  
 python中一切皆对象，即使不同的变量类型， 本质上也都是存储地址，如下图：  
-！[](http://oon3ys1qt.bkt.clouddn.com/python_value_storage.png）
+！[](http://oon3ys1qt.bkt.clouddn.com/python_value_storage.png)
 
 #### 数据初始化对内存地址的影响
 
