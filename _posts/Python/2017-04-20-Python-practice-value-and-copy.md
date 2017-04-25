@@ -6,7 +6,7 @@ category: Python
 
 #### 本系列列举一些常见的Python知识点，本文涉及变量的赋值，存储和深浅拷贝。
 
-### 1. 先举个例，解释输出的原理
+### 1. 先举个例，请解释输出的原理
 
 ```python
 [root@localhost mystuff]# cat it01.py 
