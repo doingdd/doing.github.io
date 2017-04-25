@@ -35,6 +35,12 @@ ga:
 # Build settings
 permalink: /:year/:month/:day/:title.html
 markdown: kramdown
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
 highlighter: rouge
 mathjax: disabled
 sass:
