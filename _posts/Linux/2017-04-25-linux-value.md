@@ -20,4 +20,4 @@ export|显示从 Shell 中导出成环境变量的变量，也能通过它将自
 
 set, env 和 export的范围如下图：    
 
-![](http://oon3ys1qt.bkt.clouddn.com/linux-value.png)
+![](http://oon3ys1qt.bkt.clouddn.com/linux-value.png-reduce_50_percent)
