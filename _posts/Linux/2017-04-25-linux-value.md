@@ -4,7 +4,7 @@ layout: post
 category: Linux
 ---
 
-####本文简单列举一下linux环境变量的区别和范围。
+#### 本文简单列举一下linux环境变量的区别和范围。
 
 通常我们会涉及到的环境变量有三种：
 	• 当前 Shell 进程私有用户自定义变量，如上面我们创建的 temp 变量，只在当前 Shell 中有效。
@@ -18,6 +18,6 @@ set|显示当前 Shell 所有环境变量，包括其内建环境变量（与 Sh
 env|显示与当前用户相关的环境变量，还可以让命令在指定环境中运行
 export|显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量
 
-**set, env 和 export的范围如下图：**    
+set, env 和 export的范围如下图：    
 
-![set,env and export](http://oon3ys1qt.bkt.clouddn.com/linux-value.png?imageMogr2/auto-orient/thumbnail/!50p/blur/1x0/quality/75|imageslim)
+![](http://oon3ys1qt.bkt.clouddn.com/linux-value.png?imageMogr2/auto-orient/thumbnail/!50p/blur/1x0/quality/75|imageslim)
