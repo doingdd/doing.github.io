@@ -1,5 +1,5 @@
 ---
-title:  Python知识点之变量赋值与深浅copy
+title:  Python知识点--变量赋值与深浅copy
 layout: post
 category: Python
 ---
@@ -32,14 +32,14 @@ list3 = [10, 'a']
 ```
 **首先**解释为什么list3是[10， 'a'] 而不是 ['a']。因为函数extendList的参数默认值：list = []只有在函数被定义的时候（或者第一次调用的时候？）定义一次，如果继续进行函数调用，函数参数的默认值是不进行定义的，因为这时候这个参数已经有了值，无论这个值是否被改变，它都已经固定了，当然这是不给函数传递参数的前提下。  
 **然后**解释为什么list1会随着list3的赋值而变化。这里涉及到python变量存储和深浅copy的知识如下：  
-参考[Eva_J的博客]（http://www.cnblogs.com/Eva-J/p/5534037.html） 
+参考[Eva_J的博客](http://www.cnblogs.com/Eva-J/p/5534037.html)
   
 #### python的变量存储
 python中变量的存储采用引用语义的方式，存储的只是一个变量的值所在的**内存地址**，而不是变量的值本身。
 顺便提一下，C语言不是这种方式，是值语义，即变量存储的就是一个值本身。
 所以，python变量的大小都是一样的，因为**内存地址**的大小一致。而C语言的变量大小是不固定的。  
 python中一切皆对象，即使不同的变量类型， 本质上也都是存储地址，如下图：  
-！[](http://oon3ys1qt.bkt.clouddn.com/python_value_storage.png)
+![](http://oon3ys1qt.bkt.clouddn.com/python_value_storage.png)
 
 #### 数据初始化对内存地址的影响
 
