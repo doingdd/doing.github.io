@@ -1,7 +1,7 @@
 ---
 title:  Python知识点--变量赋值与深浅copy
 layout: post
-category: python
+category: Python
 ---
 
 #### 本系列列举一些常见的Python知识点，本文涉及变量的赋值，存储和深浅拷贝。
