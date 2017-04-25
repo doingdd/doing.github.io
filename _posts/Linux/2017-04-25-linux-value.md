@@ -19,6 +19,5 @@ env|显示与当前用户相关的环境变量，还可以让命令在指定环�
 export|显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量
 **set, env 和 export的范围如下图：**  
 
-<div align=center>
+
 ![set,env and export](http://oon3ys1qt.bkt.clouddn.com/linux-value.png)
-</div>
