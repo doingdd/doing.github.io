@@ -7,7 +7,7 @@ category: Python
 #### 本文介绍了装饰器的原理和典型应用
 
 # 装饰器原理实现的基础 -- 函数对象化
-要想理解python中装饰器的原理，首先立即一点：python中的一切皆对象。  
+要想理解python中装饰器的原理，首先理解：python中的一切皆对象。  
 在python中，函数作为对象，可以赋给其他的变量，例如：
 ```python
 [root@localhost mystuff]# cat decorator.py
@@ -110,7 +110,7 @@ This is to get something.
 ```
 这里解释一下python是怎么执行上面的代码的，首先，在定义完成后，这些语句**并没有被执行**，python解释器会从头到尾将其解释一遍：  
 > 1. def decorator(func):   ----将decorator加到内存    
-2. @decorator
+> 2. @decorator
 	这一句，会执行decorator的函数，将@decorator下面的函数作为decorator的参数，即decorator(log)  
 	内部执行就是将log()这个函数，带入了decorator的函数，包了一层又返回来了。  
 	log = decorator(log)  
@@ -155,3 +155,9 @@ set()
 Execute: set
 This is to set sth.
 ```
+
+### 内置装饰器 property
+property也叫属性函数，它的作用是有两点：
+>1. 将类方法转换为只读属性
+>2. 重新实现属性的setter和getter方法
+
