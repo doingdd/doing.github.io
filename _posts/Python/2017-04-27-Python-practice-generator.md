@@ -161,3 +161,90 @@ property也叫属性函数，它的作用是有两点：
 >1. 将类方法转换为只读属性
 >2. 重新实现属性的setter和getter方法
 
+首先看一个类方法调用的例子：
+```python
+[root@localhost python]# cat prop.py 
+class Person(object):
+    def __init__(self, first_name, last_name):
+        """Constructor"""
+        self.first_name = first_name
+        self.last_name = last_name
+ 
+    def full_name(self):
+        """
+        Return the full name
+        """
+        return "%s %s" % (self.first_name, self.last_name)
+
+me = Person('Du', 'Ying')
+print me.full_name()
+
+>>> import prop
+Du Ying
+>>> print prop.me.first_name
+Du
+>>> print prop.me.last_name
+Ying
+>>> print prop.me.full_name
+<bound method Person.full_name of <prop.Person object at 0x7f924150aed0>>
+>>> print prop.me.full_name()
+Du Ying
+```
+注意到full_name()这个类的方法，如果调用，需要使用加括号的方式执行，而且，如果想对full_name的返回值做其他限制，需要在调用的时候写其他的函数名。如果加上property装饰器，可以把full_name()这个方法转化成类的属性，直接对full_name进行操作。
+```python
+class Person(object):
+    def __init__(self, first_name, last_name):
+        """Constructor"""
+        self.first_name = first_name
+        self.last_name = last_name
+    @property 
+    def full_name(self):
+        """
+        Return the full name
+        """
+        return "%s %s" % (self.first_name, self.last_name)
+
+[root@localhost python]# python
+>>> import prop
+>>> me = prop.Person('Du', 'Ying')
+>>> me.full_name
+'Du Ying'
+```
+只定义@property实际上是对属性只读，如果想修改属性，可以调用一个setter：
+```python
+[root@localhost python]# cat prop.py
+class Person(object):
+    def __init__(self, first_name, last_name):
+        """Constructor"""
+        self.first_name = first_name
+        self.last_name = last_name
+    @property 
+    def full_name(self):
+        """
+        Return the full name
+        """
+        try:
+            return self._full_name
+        except AttributeError:
+            return "%s %s" % (self.first_name, self.last_name)
+
+    @full_name.setter
+    def full_name(self, a):
+        self._full_name = a 
+```
+try except的目的是让对象创建时，返回一个初始的full_name，而且这个full_name可以在后续进行修改：
+```python
+[root@localhost python]# python
+Python 2.7.5 (default, Nov  6 2016, 00:28:07) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import prop
+>>> me = prop.Person('a', 'b')
+>>> me.full_name
+'a b'
+>>> me.full_name = "Du Ying"
+>>> me.full_name
+'Du Ying'
+```
+
+目前看这几个例子并没有看出装饰器property有什么优势？感觉也没有省掉很多代码量，期待后续的学习会有所收获。
