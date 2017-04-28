@@ -16,7 +16,7 @@ shell的英文意思是“壳”，“壳”里面是“核”，也就是内核
 **A** 从使用上看，shell是一种语言，也可以叫命令解释器，它有自己的变量，参数和语言结构，包括循环分支等等，它通过解释器将代码转换成机器语言，操作和控制内核资源。但是shell本身又是用C语言写的。
 
 # 2.常用shell种类
-第一个比较流行的shell是Steven Bourne发展出来的，为了纪念它，就成为Bourne Shell，简称为:   
+第一个比较流行的shell是Steven Bourne发展出来的，为了纪念他，就成为Bourne Shell，简称为:   
 sh(`/bin/sh`, 后来被bash取代)  
 后来出现了C语言写的C shell: csh(`/usr/bin/csh`)   
 Bourne Again Shell:  bash(`/bin/bash`)   
