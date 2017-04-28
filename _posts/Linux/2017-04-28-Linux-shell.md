@@ -16,12 +16,12 @@ shell的英文意思是“壳”，“壳”里面是“核”，也就是内核
 **A** 从使用上看，shell是一种语言，也可以叫命令解释器，它有自己的变量，参数和语言结构，包括循环分支等等，它通过解释器将代码转换成机器语言，操作和控制内核资源。但是shell本身又是用C语言写的。
 
 # 2.常用shell种类
-第一个比较流行的shell是Steven Bourne发展出来的，为了纪念它，就成为Bourne Shell，简称为:  
-sh(`/bin/sh`, 后来被bash取代)
-后来出现了C语言写的C shell: csh(`/usr/bin/csh`) 
-Bourne Again Shell:  bash(`/bin/bash`)
-Kornshell 发展出来的： ksh(`/usr/bin/ksh`, 兼容于bash)
-ksh发展的：zsh(功能更大的ksh, `/bin/zsh`)
+第一个比较流行的shell是Steven Bourne发展出来的，为了纪念它，就成为Bourne Shell，简称为:   
+sh(`/bin/sh`, 后来被bash取代)  
+后来出现了C语言写的C shell: csh(`/usr/bin/csh`)   
+Bourne Again Shell:  bash(`/bin/bash`)   
+Kornshell 发展出来的： ksh(`/usr/bin/ksh`, 兼容于bash)  
+ksh发展的：zsh(功能更大的ksh, `/bin/zsh`)  
 
 目前，接触比较多的`/bin/bash` 和`/usr/bin/ksh`
 查看当前系统支持的shell种类：
@@ -69,11 +69,11 @@ Shell changed.
 root:x:0:0:root:/root:/bin/sh
 ```
 # ksh 和 bash的主要区别
-ksh和bash互相兼容，但是在使用上还有很多区别。  
+ksh和bash互相兼容，但是在使用上还有很多区别。    
 ksh在unix上用的比较多，bash在linux上比较多
 
 ### 中括号判断，布尔表达式
-ksh的括号是[[]]，bash是[]；
+ksh的括号是[[]]，bash是[]；  
 ksh的布尔表达可以用&& ||, bash是-a， -o
 ```python
 [root@localhost temp]# cat ksh.sh 
