@@ -6,14 +6,14 @@ category: Python
 
 ####本文介绍python中lambda表达式的概念和用法，涉及到python内建函数map
 
-**lambda,** 希腊字符的第十一个字符：`λ`，抛开起数学原理不谈，只关注在python中的使用和概念。  
+**lambda,** 希腊字符的第十一个字符：`λ`，抛开数学原理不谈，只关注在python中的使用和概念。  
 在python中，lambda又叫匿名函数，顾名思义，lambda语句使用来创建一个没有名字的函数对象的，它的返回值是一个函数。最简单的用法：
 ```python
 >>> func = lambda x:x+1
 >>> func(5)
 6
 ```
-可以这样认为,lambda作为一个表达式，定义了一个匿名函数，上例的代码`x`为入口参数，`x+1`为函数体。在这里lambda简化了函数定义的书写形式。是代码更为简洁，但是使用函数的定义方式更为直观，易理解。
+可以这样认为, lambda作为一个表达式，定义了一个匿名函数，上例的代码`x`为入口参数，`x+1`为函数体。在这里lambda简化了函数定义的书写形式。使代码更为简洁，但是使函数的定义方式更为直观，易理解。
 再来一个简单的：
 ```python
 >>> f = lambda x:x*x
@@ -21,7 +21,7 @@ category: Python
 4
 ```
 在python中，lambda的函数体语句只能有一句，这样是为了方式lambda的滥用，如果想要多语句执行，还是老老实实def一个函数吧。  
-lambda经常和python的内建函数一起使用：  
+lambda经常和python的内建函数一起使用，主要有map，filter和reduce
 
 **map(function, iterable, ...)**
 map的参数是函数，和想要在函数中执行的迭代对象，上例子:
