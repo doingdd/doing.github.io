@@ -72,7 +72,7 @@ root:x:0:0:root:/root:/bin/sh
 ksh和bash互相兼容，但是在使用上还有很多区别。    
 ksh在unix上用的比较多，bash在linux上比较多
 
-### 中括号判断，布尔表达式
+## 中括号判断，布尔表达式
 ksh的括号是[[]]，bash是[]；  
 ksh的布尔表达可以用&& ||, bash是-a， -o
 ```python
@@ -92,7 +92,7 @@ fi
 It's True
 ```
 
-### 数组设置方式不同
+## 数组设置方式不同
 ksh： set -A array 1 2 3
 bash: array=(1 2 3)
 关于数组index个数，ksh最多只能到1023，bash没有限制（这一条验证失败，尝试创建超过1024个元素的数组，仍然成功）
