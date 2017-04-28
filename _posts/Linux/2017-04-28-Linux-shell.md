@@ -10,7 +10,7 @@ category: Linux
 shell的英文意思是“壳”，“壳”里面是“核”，也就是内核kernel，也有一种说法是shell是操作系统的最外层，也不无道理。  
 关于shell的定位可以参考鸟哥教材里面的一张图：
 
-![图片来源于鸟哥私房菜](http://oon3ys1qt.bkt.clouddn.com/HW_Kernel_Shell.png-200_px)
+![图片来源于鸟哥私房菜](http://oon3ys1qt.bkt.clouddn.com/HW_Kernel_Shell.png)
 
 **Question1.** Shell是一种语言吗？
 **A** 从使用上看，shell是一种语言，也可以叫命令解释器，它有自己的变量，参数和语言结构，包括循环分支等等，它通过解释器将代码转换成机器语言，操作和控制内核资源。但是shell本身又是用C语言写的。
