@@ -59,5 +59,15 @@ python 3 中input得到的是string。
 >>> type(input_me)
 <type 'str'>
 ```
+# 迭代器方法next()
+next()在python3中变成了内建函数：  
+python2： it.next()  
+python3: next(it)  
+在class中定义next方法：
+python2: def next():
+python3: def __next__():
+# super()
+python2: super(classb, self).__init__(), 用于调用父类的__init__  
+python3: super可以不加参数，仍然work  
 
 ####未完待续。。。

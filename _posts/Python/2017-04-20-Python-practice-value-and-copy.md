@@ -121,8 +121,9 @@ python的copy模块，有两种方法，一种是普通的copy，也叫浅拷贝
 浅copy，无论多么复杂的数据结构， 浅拷贝只copy一层数据结构。
 浅拷贝的形式有几种：
 
-**切片操作：list_b = list_a[:]   或者 list_b = [each for each in list_a]
-工厂函数：list_b = list(list_a)
+**切片操作：list_b = list_a[:]  
+或者 list_b = [each for each in list_a]  
+工厂函数：list_b = list(list_a)  
 copy函数：list_b = copy.copy(list_a)**
 
 ```python
