@@ -43,7 +43,7 @@ TypeError: list object is not an iterator
 3. for循环内部事实上就是先调用iter()把Iterable变成Iterator在进行循环迭代的。
 
 **iterable需要包含有__iter()方法用来返回iterator，而iterator需要包含有next__()方法用来被循环。如果自己定义迭代器，需要在类中定义iter()方法返回一个对象，对象里面包含next()方法用来循环。**
-## 迭代器举例
+## 2. 迭代器举例
 前面提到，可以使用iter方法将可迭代对象转化成迭代器，实际上，只要具备以下两个特点的对象，都可以当做迭代器：
 1. iter()方法，返回迭代器本身；
 2. next（）方法，返回下一个元素或者跑出StopIteration异常。
@@ -69,13 +69,27 @@ class Fib(object):
 
 	def next(self):
 		if self.n < self.max: 
-			r = self.b
-			self.a, self.b = self.b, self.a + self.b
-			self.n += 1
-			return r
+			if self.n == 0:  
+				self.n +=1
+				return self.a
+			else:
+				r = self.b
+				self.a, self.b = self.b, self.a + self.b
+				self.n += 1
+				return r
 		raise StopIteration()
 
 for i in Fib(value):
 	print i
 ```
-斐波那契数列，从第三位开始，每一位是前两位元素之和.[0, 1, 1, 2, 3, 5, 8, 13....].
+斐波那契数列，从第三位开始，每一位是前两位元素之和.[0, 1, 1, 2, 3, 5, 8, 13....].  
+只要看next方法，当第一次迭代n==0时，返回0；0 < n < max 时，返回前两个元素之和，迭代次数超过max次之后抛出异常：  
+```python
+[root@localhost py]# ./Fib.py 5
+0
+1
+1
+2
+3
+```
+# 生成器
