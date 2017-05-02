@@ -1,5 +1,5 @@
 ---
-title： Python知识点 -- 迭代器和生成器
+title: Python知识点 -- 迭代器和生成器
 layout: post
 category: Python
 ---
