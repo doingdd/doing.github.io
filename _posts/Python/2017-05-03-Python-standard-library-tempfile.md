@@ -16,6 +16,29 @@ tempfile这个module可以工作在任何操作系统，主要用来生成临时
 `tempfile.TemporaryFile([mode='w+b'[, bufsize=-1[, suffix=''[, prefix='tmp'[, dir=None]]]]])`  
 返回一个有临时存储空间的类文件对象，是通过`mkstemp()`创建的。一旦关闭，这个文件就会被破坏掉(包括对象垃圾回收导致的close)。在Unix中，文件入口在文件被创建的时候就已经remove掉了(文件名不可见)，在其他系统中则不会这样，所以其他code不应该依赖于这个function创建的文件对象，无论在文件系统中它有没有可见的名字。  
 这个类文件对象可以使用with语句，像一个真正的文件一样。
+```python
+>>> test_file = tempfile.TemporaryFile(mode = 'w+t')
+>>> test_file
+<open file '<fdopen>', mode 'w+t' at 0x7f0f16cc95d0>
+>>> test_file.writelines(['First', '\n', 'Second line'])
+>>> test_file.seek(0)
+>>> print test_file.read()
+First
+Second line
+>>> test_file.close()
+>>> print test_file
+<closed file '<fdopen>', mode 'w+t' at 0x7f0f16cc95d0>
+```
+```python
+>>> with tempfile.TemporaryFile(mode = 'w+t') as test_file:
+...     test_file.writelines(['First', '\n', 'Second line'])
+... 
+>>> test_file.seek(0)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: I/O operation on closed file
+```
+可以看到临时文件在close后即销毁的特性
 ### tempfile.NamedTemporaryFile
 `tempfile.NamedTemporaryFile([mode='w+b'[, bufsize=-1[, suffix=''[, prefix='tmp'[, dir=None[, delete=True]]]]]])`  
 这个function的与TemporaryFile()的唯一区别是用它创建的类文件对象有一个可见的文件名，名字存在`name`属性中。  
