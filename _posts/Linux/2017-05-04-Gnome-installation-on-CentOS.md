@@ -78,13 +78,12 @@ sudo systemctl restart firewalld.service
   ls ~/.vnc/ |grep pid
   ps -ef|grep "pid"
 ```
-* 查看防火墙是否开启：
+* 查看防火墙是否开启：  
   `ps -ef|grep iptables`
-  修改防火墙文件，增加下面第一行内容到 `/etc/sysconfig/iptables`，并重启防火墙
+  修改防火墙文件，增加下面第一行内容到 `/etc/sysconfig/iptables`，并重启防火墙   
+`-A INPUT -m state --state NEW -m tcp -p tcp --dport 5900:5903 -j ACCEPT`  
+`-A INPUT -j REJECT --reject-with icmp-host-prohibited`
 ```shell
--A INPUT -m state --state NEW -m tcp -p tcp --dport 5900:5903 -j ACCEPT
--A INPUT -j REJECT --reject-with icmp-host-prohibited
-
 # systemctl restart iptables
 ```
 意思是允许5900到5903端口被访问。
