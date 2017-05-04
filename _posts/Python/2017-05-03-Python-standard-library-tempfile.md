@@ -43,7 +43,13 @@ ValueError: I/O operation on closed file
 `tempfile.NamedTemporaryFile([mode='w+b'[, bufsize=-1[, suffix=''[, prefix='tmp'[, dir=None[, delete=True]]]]]])`  
 这个function的与TemporaryFile()的唯一区别是用它创建的类文件对象有一个可见的文件名，名字存在`name`属性中。  
 在Unix中，这个name可以重复open第二次，在Window下不行。  
-如果delete=True(默认), 文件会在关闭的时候删除。  
+如果delete=True(默认), 文件会在关闭的时候删除。 
+```python
+>>> with tempfile.NamedTemporaryFile(mode = 'w+t', suffix = '.tmp') as test_file:
+...     test_file.name
+... 
+'/tmp/tmptQDq38.tmp'
+```
 ### tempfile.SpooledTemporaryFile
 `tempfile.SpooledTemporaryFile([max_size=0[, mode='w+b'[, bufsize=-1[, suffix=''[, prefix='tmp'[, dir=None]]]]]])`  
 这个function和TemporaryFile()的唯一区别是用它创建的文件，数据是存在内存中的，直到大小超过了`max_size`，或者是调用了`fileno()`，数据会像Temporary()一样写到硬盘上。 而且，它的`truncate`方法不支持`size`参数。  
