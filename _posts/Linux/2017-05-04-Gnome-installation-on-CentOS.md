@@ -63,12 +63,13 @@ systemctl status firewalld.service
 sudo firewall-cmd --permanent --add-service vnc-server
 sudo systemctl restart firewalld.service
 ```
-## 查看vnc状态，通过vnc client连接
+## 查看vnc状态，通过vnc client连接  
 ![](http://oon3ys1qt.bkt.clouddn.com/vnc.png)
 下载vnc client  
 [官网地址](https://www.realvnc.com/download/viewer/)
-**Q2, vnc viewer failed to connect 操作成功完成 : **
-![](http://oon3ys1qt.bkt.clouddn.com/vncQ2.png)
+**Q2, vnc viewer failed to connect 操作成功完成 : **  
+
+![](http://oon3ys1qt.bkt.clouddn.com/vncQ2.png)  
 * 确保vncserver的：1起起来：
 `netstat -anp|grep Xvnc` 
 
