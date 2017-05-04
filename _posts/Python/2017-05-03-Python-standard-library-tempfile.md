@@ -14,7 +14,8 @@ tempfile这个module可以工作在任何操作系统，主要用来生成临时
 
 ### tempfile.TemporaryFile
 `tempfile.TemporaryFile([mode='w+b'[, bufsize=-1[, suffix=''[, prefix='tmp'[, dir=None]]]]])`  
-返回一个有临时存储空间的类文件对象，是通过`mkstemp()`创建的。一旦关闭，这个文件就会被破坏掉(包括对象垃圾回收导致的close)。在Unix中，文件入口在文件被创建的时候就已经remove掉了(文件名不可见)，在其他系统中则不会这样，所以其他code不应该依赖于这个function创建的文件对象，无论在文件系统中它有没有可见的名字。  
+返回一个有临时存储空间的类文件对象，是通过`mkstemp()`创建的。一旦关闭，这个文件就会被破坏掉(包括对象垃圾回收导致的close)。在Unix中，文件入口在文件被创建的时候就已经remove掉了(文件名不可见)，在其他系统中则不会这样，所以其他code不应该依赖于这个function创建的文件对象，无论在文件系统中它有没有可见的名字。  
+它的参数见下面关于`tempfile.mkstemp`的介绍。  
 这个类文件对象可以使用with语句，像一个真正的文件一样。
 ```python
 >>> test_file = tempfile.TemporaryFile(mode = 'w+t')
@@ -61,7 +62,7 @@ ValueError: I/O operation on closed file
 如果指定`suffix`，文件名后面会追加一个后缀名，但是不会用`.`隔开，需要手动在suffix的开头加`.`。  
 如果指定`prefix`，文件名前会加前缀，如果不指定，使用默认值。  
 如果指定`dir`，文件将会创建在指定目录，否则，使用默认值。默认值会在平台的dependent-list中选择，用户也可以通过设定`TMPDIR`, `TEMP`或者`TMP`环境变量控制。所以，不保证文件具备任何好的属性，比如不需要引号就可以传递给`os.open()`  
-如果指定`text`，意味着是否以二进制模式(默认)打开文件，如果是True，则是text模式。在一些平台，他们没有区别。  
+如果指定`text`，意味着是否以二进制模式(默认)打开文件，如果是True，则是text模式。在一些平台，针对纯文本文件，它们没有区别。  
 **mkstemp()返回的是一个tuple，包括了类文件对象(类似于os.open())和绝对路径。**  
 ### tempfile.mkdtemp
 `tempfile.mkdtemp([suffix=''[, prefix='tmp'[, dir=None]]])`  
