@@ -80,9 +80,10 @@ sudo systemctl restart firewalld.service
 ```
 * 查看防火墙是否开启：  
   `ps -ef|grep iptables`
-  修改防火墙文件，增加下面第一行内容到 `/etc/sysconfig/iptables`，并重启防火墙   
-`-A INPUT -m state --state NEW -m tcp -p tcp --dport 5900:5903 -j ACCEPT`  
-`-A INPUT -j REJECT --reject-with icmp-host-prohibited`
+  修改防火墙文件，增加下面第一行内容到`/etc/sysconfig/iptables`      
+`-A INPUT -m state --state NEW -m tcp -p tcp --dport 5900:5903 -j ACCEPT`   
+`-A INPUT -j REJECT --reject-with icmp-host-prohibited`  
+并重启防火墙  
 ```shell
 # systemctl restart iptables
 ```
