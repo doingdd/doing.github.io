@@ -37,7 +37,7 @@ WARNING:root:Watch out!
 ```
 info信息默认不会显示
 
-# 首先，介绍logging的 Module-Level Functions
+# 2. 介绍logging的 Module-Level Functions
 ## logging to a file
 设置默认level为DEBUG，并输出到文件, 所有logging信息都可以打印出来。这个例子涉及到了`logging.basicConfig()`,`logging.debug()`等等.
 ```python
@@ -125,7 +125,7 @@ INFO:root:doing is my name
 05/05/2017 01:06:22 PM WARNING:Please notice the CPU utibily!
 ```
 更多的格式说明可以参考 [time.strftime()](https://docs.python.org/2/library/time.html#time.strftime)
-# 其次，介绍logging module的各个object
+# 3. 介绍logging module的各个object
 logging模块主要包含几个部分：loggers, handlers, filters, formatters.
 ## loggers
 Logger 对象包括三类功能。  
@@ -135,9 +135,9 @@ Logger 对象包括三类功能。
 总结起来，logger对象就是，保存log，筛选log和传递log，或者按照文档说法：  
 最普遍的用法有两方面： **配置和消息发送。**  
 常用的**配置**方法：  
-> Logger.setLevel()，顾名思义，设置log级别
-> Logger.addHandler(), Logger.removeHandler(),添加和删除handler对象给logger对象。
-> Logger.addFilter(), Logger.removeFilter(), 添加，删除filter对象。
+> Logger.setLevel()，顾名思义，设置log级别  
+> Logger.addHandler(), Logger.removeHandler(),添加和删除handler对象给logger对象。  
+> Logger.addFilter(), Logger.removeFilter(), 添加，删除filter对象。  
 > getLogger(),返回一个特定名字(默认为`root`)的logger实例的引用，名字是以`.`分隔的，有继承结构的。当多个call以同一名字同时调用getLogger()时，返回同一个logger对象。当名字时继承list里的下一级时，对应对象是上一级名字对应对象的继承。例如：logger 名字是`foo`的对象，是所有logger名字为`foo.tar`, `foo.file`, `foo.pdf`的上一级，后者是children。  
 
 Loggers 有一个explicit level的概念，就是Logger 对象必须有一个明确的级别，如果当前没有，则使用其父辈的level，一直往上找，直到找到`root`这个级别。这个级别用来决定当一个log事件发生时，是否将其传给handlers处理。
