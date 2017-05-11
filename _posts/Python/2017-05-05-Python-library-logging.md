@@ -134,28 +134,77 @@ Logger 对象包括三类功能。
 第三，logger 对象向其它相关的handler传递log。  
 总结起来，logger对象就是，保存log，筛选log和传递log，或者按照文档说法：  
 最普遍的用法有两方面： **配置和消息发送。**  
-常用的**配置**方法：  
-> Logger.setLevel()，顾名思义，设置log级别  
-> Logger.addHandler(), Logger.removeHandler(),添加和删除handler对象给logger对象。  
-> Logger.addFilter(), Logger.removeFilter(), 添加，删除filter对象。  
-> getLogger(),返回一个特定名字(默认为`root`)的logger实例的引用，名字是以`.`分隔的，有继承结构的。当多个call以同一名字同时调用getLogger()时，返回同一个logger对象。当名字时继承list里的下一级时，对应对象是上一级名字对应对象的继承。例如：logger 名字是`foo`的对象，是所有logger名字为`foo.tar`, `foo.file`, `foo.pdf`的上一级，后者是children。  
+logger的常用的**配置**方法：  
+`Logger.setLevel()`，顾名思义，设置log级别  
+`Logger.addHandler()`, Logger.removeHandler(),添加和删除handler对象给logger对象。  
+`Logger.addFilter()`, Logger.removeFilter(), 添加，删除filter对象。  
+`logging.getLogger()`,返回一个特定名字(默认为`root`)的logger实例的引用，名字是以`.`分隔的，有继承结构的。  
+当多个call以同一名字同时调用logging.getLogger()时，返回同一个logger对象。当名字时继承list里的下一级时，对应对象是上一级名字对应对象的继承。例如：logger 名字是`foo`的对象，是所有logger名字为`foo.tar`, `foo.file`, `foo.pdf`的上一级，后者是children。   
+例如：  
+`logger = logging.getLogger(__file__)` 返回的是名字为当前文件名的logger对象，配置完成后可以输出log: `logger.info('hi') `
 
 Loggers 有一个explicit level的概念，就是Logger 对象必须有一个明确的级别，如果当前没有，则使用其父辈的level，一直往上找，直到找到`root`这个级别。这个级别用来决定当一个log事件发生时，是否将其传给handlers处理。
 
 子loggers用其父类的loggers的handler发送消息，所以，不用给每一个logger配置handler，只需要给最高级的logger配置即可，当然，也可以set `propagate` 为`False`.
 ## Handlers
-Hanlder 对象 负责分派合适的log信息(根据logger的level)给特定的目的地。Logger对象可以通过addHandler()方法添加0个或多个handler对象。举例，如果需要log发送给文件，stdout和email，则需要配置三个handler，分别处理一个每一个location。
+Hanlder 对象 负责分派合适的log信息(根据logger的level)给特定的目的地。Logger对象可以通过addHandler()方法添加0个或多个handler对象。举例，如果需要log发送给文件，stdout和email，则需要配置三个handler，分别处理一个每一个location。  
+常用的handler可以参考： [Useful Handlers](https://docs.python.org/2.7/howto/logging.html#useful-handlers)  
+最常用的handler：     
+**logging.FileHandler(filename, mode='a', encoding=None, delay=False)**  
+将log以指定模式存进指定文件
+**logging.StreamHandler(stream=None)**  
+将log发送给标准流输出。  
 ## Formatters
-Formatter对象配置log信息的最后顺序，结构和内容。不同于logging.Handlers类，formatter 类应该实例化。formatter有两个可选参数，信息的格式字符串和日期格式字符串。  
-`logging.Formatter.__init__(fmt=None,datafmt=None)`  
-如果没有message format string，则使用原始message，如果没有date format string，则使用如下格式： 
+Formatter对象配置log信息的最后顺序，结构和内容。formatter有两个可选参数，信息的格式字符串和日期格式字符串。  
+**logging.Formatter.__init__(fmt=None,datafmt=None)**  
+举例：
 ```python
-%Y-%m-%d %H:%M:%S
+sys_fmt = '%(asctime)s %(levelname)s %(filename)s:%(lineno)d %(processName)s MSGCLS=%(message)s'
+datefmt = '%Y%m%d%H%M%S'
+sys_formatter = logging.Formatter(sys_fmt, datefmt)
 ```
-后面再加上事件发生的毫秒数。  
-message format string的基本格式是`**%(<dictionary key>)s**`.如下例，列出了时间，级别和log内容：
+
+如果没有message format string，则使用原始message，如果没有date format string，则使用如下格式： 
+`%Y-%m-%d %H:%M:%S`后面再加上事件发生的毫秒数。   
+message format string的基本格式是`**%(<dictionary key>)s**`.如下例，列出了时间，级别和log内容：  
 ```python
 '%(asctime)s - %(levelname)s - %(message)s'
 ```
 Formatters默认使用time.localtime(),如果需要，可以设置`converter`属性为time.gmtime()，显示GMT格式的时间。  
+
+# 概念有点乱，上例子
+
+定义logger：
+```python
+import logging
+
+logger = logging.getLogger('my_log')
+logger.setLevel(logging.DEBUG)
+```
+定义handler，这里既要存文件，又要打印输出：
+```python
+file_h = logging.FileHandler('test.log')
+file_h.setLevel(logging.DEBUG)
+
+console_h = logging.StreamHandler()
+console_h.setLevel(logging.DEBUG)
+```
+定义formatter，这里更改了默认的时间格式，不想输出毫秒。
+```python
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter.datefmt='%Y/%m/%d %H:%M:%S'
+```
+把formatter给set给handler，再把handler赋给logger
+```python
+file_h.setFormatter(formatter)
+console_h.setFormatter(formatter)
+
+logger.addHandler(file_h)
+logger.addHandler(console_h)
+```
+最后 打印log：
+```python
+logger.debug('cool')
+logger.error('bad')
+```
 
