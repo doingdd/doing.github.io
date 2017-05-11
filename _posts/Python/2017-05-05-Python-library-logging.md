@@ -59,20 +59,20 @@ ERROR:root:There is an error
 WARNING:root:Warn: 
 ```
 logging.basicConfig函数各参数:  
->filename: 指定日志文件名  
-filemode: 和file函数意义相同，指定日志文件的打开模式，'w'或'a'  
-format: 指定输出的格式和内容，format可以输出很多有用信息，如上例所示:  
- %(levelno)s: 打印日志级别的数值  
- %(levelname)s: 打印日志级别名称  
- %(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]  
- %(filename)s: 打印当前执行程序名  
- %(funcName)s: 打印日志的当前函数  
- %(lineno)d: 打印日志的当前行号  
- %(asctime)s: 打印日志的时间  
- %(thread)d: 打印线程ID  
- %(threadName)s: 打印线程名称  
- %(process)d: 打印进程ID  
- %(message)s: 打印日志信息  
+`filename`: 指定日志文件名  
+`filemode`: 和file函数意义相同，指定日志文件的打开模式，'w'或'a'  
+`format`: 指定输出的格式和内容，format可以输出很多有用信息，如上例所示:  
+ `%(levelno)s`: 打印日志级别的数值  
+ `%(levelname)s`: 打印日志级别名称  
+ `%(pathname)s`: 打印当前执行程序的路径，其实就是sys.argv[0]  
+ `%(filename)s`: 打印当前执行程序名  
+ `%(funcName)s`: 打印日志的当前函数  
+ `%(lineno)d`: 打印日志的当前行号  
+ `%(asctime)s`: 打印日志的时间  
+ `%(thread)d`: 打印线程ID  
+ `%(threadName)s`: 打印线程名称  
+ `%(process)d`: 打印进程ID  
+ `%(message)s`: 打印日志信息  
 datefmt: 指定时间格式，同time.strftime()  
 level: 设置日志级别，默认为logging.WARNING  
 stream: 指定将日志的输出流，可以指定输出到sys.stderr,sys.stdout或者文件，默认输出到sys.stderr，当stream和filename同时指定时，stream被忽略  
@@ -150,9 +150,9 @@ Loggers 有一个explicit level的概念，就是Logger 对象必须有一个明
 Hanlder 对象 负责分派合适的log信息(根据logger的level)给特定的目的地。Logger对象可以通过addHandler()方法添加0个或多个handler对象。举例，如果需要log发送给文件，stdout和email，则需要配置三个handler，分别处理一个每一个location。  
 常用的handler可以参考： [Useful Handlers](https://docs.python.org/2.7/howto/logging.html#useful-handlers)  
 最常用的handler：     
-**logging.FileHandler(filename, mode='a', encoding=None, delay=False)**  
-将log以指定模式存进指定文件
-**logging.StreamHandler(stream=None)**  
+**logging.FileHandler(filename, mode='a', encoding=None, delay=False)**    
+将log以指定模式存进指定文件  
+**logging.StreamHandler(stream=None)**    
 将log发送给标准流输出。  
 ## Formatters
 Formatter对象配置log信息的最后顺序，结构和内容。formatter有两个可选参数，信息的格式字符串和日期格式字符串。  
