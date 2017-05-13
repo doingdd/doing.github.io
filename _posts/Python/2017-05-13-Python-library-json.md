@@ -22,7 +22,7 @@ json.loads()函数将json格式的字符串转换成python对象。
 **注意**，如果指定intent，最好指定separater(item_separator, key_separator) 为：(',', ':')，默认为(', ', ': ')，注意默认时冒号后面的空格。  
 `encoding`: 编码格式，默认UTF-8.  
 `sort-keys`: 如果为True， dictionary输出时会按key值排序(dict是没有顺序的)。   
-json 的转化关系：  
+python数据类型到json的转化关系：  
 
 Python	|JSON
 ---|---
@@ -36,3 +36,54 @@ None	|null
 
 # 例子
 
+json.dumps(), dict转换成字符串：
+```python
+>>> import json
+>>> data1 = {'b':789,'c':456,'a':123}
+>>> d1 = json.dumps(data1,sort_keys=True,indent=4)
+>>> print d1
+{
+    "a": 123, 
+    "b": 789, 
+    "c": 456
+}
+
+>>> d1
+'{"a": 123, "b": 789, "c": 456}'
+>>> data1
+{'a': 123, 'c': 456, 'b': 789}
+```
+json.loads()，字符串转化成dict：
+```python
+>>> import json
+>>> d1 = '{"a": 123,"b": 789,"c": 456}'
+>>> data1 = json.loads(d1)
+>>> d1
+'{"a": 123,"b": 789,"c": 456}'
+>>> data1
+{u'a': 123, u'c': 456, u'b': 789}
+```
+json.load()处理json文件：
+```python
+[root@localhost python]# cat ppalp.json 
+[
+    {
+        "path": "/u/ainet/yidu/rtdb_tar/GCIPL28G.tar",
+        "FILE_SIZE":"122m",
+        "CACHE_SIZE":"121m"
+    },
+    {
+        "path": "/u/ainet/yidu/rtdb_tar/SIMDB28I.tar",
+        "RTDBVG":"repluser2"
+    }
+]
+
+>>> import json
+>>> j = json.load(open('ppalp.json'))
+>>> j
+[{u'CACHE_SIZE': u'121m', u'path': u'/u/ainet/yidu/rtdb_tar/GCIPL28G.tar', u'FILE_SIZE': u'122m'}, {u'path': u'/u/ainet/yidu/rtdb_tar/SIMDB28I.tar', u'RTDBVG': u'repluser2'}]
+>>> j[0].keys()
+[u'CACHE_SIZE', u'path', u'FILE_SIZE']
+>>> j[1].keys()
+[u'path', u'RTDBVG']
+```
