@@ -69,5 +69,19 @@ python3: def __next__():
 # super()
 python2: super(classb, self).__init__(), 用于调用父类的__init__  
 python3: super可以不加参数，仍然work  
+# callable()
+callable在pyhon2里可以查看函数是否可调用，在python3中不再可用:
+```python
+>>> x = 3
+>>> y = x**x
+>>> callable(x)
+False
 
+>>> def y():
+...     return 123
+... 
+>>> callable(y)
+True
+```
+在python3中，需要使用hasattr(func, __call__)代替。
 ####未完待续。。。
