@@ -355,3 +355,19 @@ __enter__方法返回值绑定在as后面的变量，本例中就是f类文件�
 ['you need me\n', 'wakak\n', '3\n', '4\n', '5\n', 'you do not need mewakak\n', '3\n', '4\n', '5\n']
 # 奇怪的事出现，上面这段证明在writelines之后跟readlines不会读最新内容，但是writelines跟seek后，会在文件末尾开始更新。
 ```
+继续证明，结果显示可能跟'a+'模式的特点有关，下面的代码证明了，a+模式下的seek(0)即使回到了文件开头，这时候的写操作仍然从文件末尾开始：
+```python
+>>> f = open('test', 'a+')
+>>> content = f.readlines()
+>>> content 
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+>>> content[0] = 'you do not need me'
+>>> content
+['you do not need me', 'wakak\n', '3\n', '4\n', '5\n']
+>>> f.seek(0)
+>>> f.writelines(content)
+>>> f.close()
+>>> f = open('test')
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n', 'you do not need mewakak\n', '3\n', '4\n', '5\n']
+```
