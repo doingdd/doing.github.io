@@ -156,9 +156,10 @@ write方法的参数是单个string，在当前指针出插入一行，不自动
 >>> f.readlines()
 ['Hello World!']
 ```
-也就是说，目前证实，在'w+'模式，write完之后，指针在文件末尾，直接跟readlines会导致当前的文件清空，不知道什么原因？
+也就是说，目前证实，在'w+'模式，write完之后，指针在文件末尾，直接跟readlines会导致当前的文件清空，不知道什么原因？  
+A, 怀疑是buffer的原因
 
-**writelines(sequence_of_strings)**
+**writelines(sequence_of_strings)**  
 
 writelines的参数是一个序列，只能以变量名形式传入，不自动添加换行，实际上，他和readlines正好相反。
 ```python
@@ -182,7 +183,7 @@ abc
 abc
 ```
 ## 文件指针
-**seek(offset[, whence])**  
+**seek(offset[, whence])**    
 seek用于调整文件的指针位置，可以理解成shell下vi的光标吧，read，write的操作都是基于当前光标位置做的。在前后的例子中已经多次用到seek方法。  
 -offset: 开始的偏移量，也就是代表需要移动偏移的字节数.    
 -whence：可选，默认值为 0。给offset参数一个定义，表示要从哪个位置开始偏移；0代表从文件开头开始算起，1代表从当前位置开始算起，2代表从文件末尾算起。      
@@ -214,7 +215,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> f.readline()
 'question\n'
 ```
-**tell()**
+**tell()**  
 tell方法可以返回当前的指针位置，返回值为从文件开始到当前位置的字符个数：
 	
 	>>> f = open('file.test')
@@ -229,10 +230,10 @@ tell方法可以返回当前的指针位置，返回值为从文件开始到当�
 	5
 	
 ## 关闭文件
-python在写入文件后，可能不会立即写入到磁盘，出于效率考虑可能会把数据写缓存，这样，在非正常情况的程序退出，写入有可能会丢失。所以，关闭文件来出发写入磁盘操作非常重要。
+python在写入文件后，可能不会立即写入到磁盘，出于效率考虑可能会把数据写缓存，这样，在非正常情况的程序退出，写入有可能会丢失。所以，关闭文件来出发写入磁盘操作非常重要。  
 Question：“可能”写缓存是什么意思？在哪些情况下会缓存，哪些情况不会？
 
-**close()**  
+**close()**    
 close()没有返回值，直接关闭文件，**注意**，如果不加括号的调用close不会真正关闭文件类，例如：
 ```python
 [root@localhost ~]# cat file.test 
@@ -256,7 +257,7 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ValueError: I/O operation on closed file
 ```
-**try...finally**
+**try...finally**  
 
 	#Open your file here
 	try:
@@ -264,7 +265,7 @@ ValueError: I/O operation on closed file
 	finally:
 		file.close()
 
-**with...as**
+**with...as**  
 with as 可以简化try/finally的代码，使代码更加清晰，with的作用是自动释放对象，这样即使程序异常结束，文件也可以正确的关闭。
 
 	[root@localhost ~]# cat file.test 
@@ -280,7 +281,7 @@ with as 可以简化try/finally的代码，使代码更加清晰，with的作用
 	  File "<stdin>", line 1, in <module>
 	ValueError: I/O operation on closed file
 
-with实际上是使用了python中的上下文管理器的模式，包括__enter__和__exit__两个方法，分别在进入和退出with的时候被调用。
+with实际上是使用了python中的上下文管理器的模式，包括__enter__和__exit__两个方法，分别在进入和退出with的时候被调用。  
 __enter__方法返回值绑定在as后面的变量，本例中就是f类文件；__exit__方法有三个参数（异常类型，异常对象和异常回溯），具体的高级用法留待继续学习。
 
 # 文件迭代
@@ -314,4 +315,43 @@ __enter__方法返回值绑定在as后面的变量，本例中就是f类文件�
 >>> print list(open('file.test'))
 ['First line\n', 'Second line\n', 'Third line\n']
 ```
-当然，这两种迭代方式是针对读文件的，关于迭代器的详细内容留待继续学习。
+当然，这两种迭代方式是针对读文件的，关于迭代器的详细内容留待继续学习。  
+## QA
+1.遇到一个writelines异常的问题：  
+```python
+>>> f = open('test', 'a+')
+>>> content = f.readlines()
+>>> content
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+>>> content[0] = 'you do not need me' 
+>>> f.seek(0)
+>>> f.writelines(content)
+>>> f.tell()
+54
+>>> f.readlines()
+[]
+>>> f.seek(0)
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+# 注意，上面的代码证明writelines写操作没有实时更新。
+>>> f.flush()
+>>> f.tell()
+24
+>>> f.seek(0)
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+# 执行了flush之后也没有更新。
+>>> f.seek(0)
+>>> f.writelines(content)
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+>>> f.seek(0)
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n']
+>>> f.seek(0)
+>>> f.writelines(content)
+>>> f.seek(0)
+>>> f.readlines()
+['you need me\n', 'wakak\n', '3\n', '4\n', '5\n', 'you do not need mewakak\n', '3\n', '4\n', '5\n']
+# 奇怪的事出现，上面这段证明在writelines之后跟readlines不会读最新内容，但是writelines跟seek后，会在文件末尾开始更新。
+```
