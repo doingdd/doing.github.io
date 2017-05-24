@@ -8,19 +8,20 @@ title: Linux shell内置字符串操作
   
 在做shell批处理程序的时候，经常会涉及到字符串相关操作。有很多命令语句，如：awk，sed都可以做字符串的各种操作。其实shell内置了一系列的操作符号，可以达到类似效果，其优点是可以省略启动外部程序的时间，速度很快。  
 ## 一、判断读取字符串值
-表达式|含义
-:---:|:---:
-${var}|变量var的值，与$var相同
-${var-DEFAULT}|如果var没有被声明，则以$DEFAULT为其值
-${var:-DEFAULT}|如果var没声明，或者值为空，则以$DEFAULT为其值
-${var=DEFAULT}|如果var没声明，则以$DEFAULT为其值
-${var:=DEFAULT}|如果var没声明，或者值为空，则以$DEFAULT为其值
-${var+OTHER}|如果var声明了，那么其值则为$OTHER，否则为null字符串
-${var:+OTHER}|如果var被设置了，那么其值为$OTHER，否则为null字符串
-${var?ERR_MSG}|如果var没声明，打印$ERR_MSG
-${var:?ERR_MSG}|如果var没被设置，打印$ERR_MSG
-${!varprefix*}|匹配之前所有已varprefix开头进行声明的变量
-${!varprefix@}|匹配之前所有已varprefix开头进行声明的变量
+
+表达式|含义  
+:---:|:---:  
+${var}|变量var的值，与$var相同  
+${var-DEFAULT}|如果var没有被声明，则以$DEFAULT为其值  
+${var:-DEFAULT}|如果var没声明，或者值为空，则以$DEFAULT为其值  
+${var=DEFAULT}|如果var没声明，则以$DEFAULT为其值  
+${var:=DEFAULT}|如果var没声明，或者值为空，则以$DEFAULT为其值  
+${var+OTHER}|如果var声明了，那么其值则为$OTHER，否则为null字符串  
+${var:+OTHER}|如果var被设置了，那么其值为$OTHER，否则为null字符串  
+${var?ERR_MSG}|如果var没声明，打印$ERR_MSG  
+${var:?ERR_MSG}|如果var没被设置，打印$ERR_MSG  
+${!varprefix*}|匹配之前所有已varprefix开头进行声明的变量  
+${!varprefix@}|匹配之前所有已varprefix开头进行声明的变量  
 
 上代码:  
 ```shell
@@ -84,19 +85,19 @@ Yoo-Yoo
 ```
 
 ## 二、字符串操作(长度，读取，替换)
-表达式|含义
-:---:|:---:
-${#string}|$string的长度
-${string:position}|string中，从位置$position开始提取字符串
-${string:position:length}|string中，从位置$position开始提取长度为length的字符串
-${string#substring}|string中，从头开始匹配substring（最短匹配）并删除，如果没匹配则输出string
-${string##substring}|string中，从头开始匹配substring（最长匹配）并删除，如果没匹配则输出string
-${string%substring}|从string结尾开始匹配(最短匹配)并删除，如果没匹配则输出string
-${string%%substring}|从string结尾开始匹配(最长匹配)并删除，如果没匹配则输出string
-${string/substring/replacement}|使用replacement替代第一个substring
-${string//substring/replacement}|使用replacement替代所有sbustring
-${string/#substring/replacement}|如果string的前缀匹配substring，那么用replacement替换substring
-${string/%substring/replacement}|如果string的后缀匹配substring，那么用replacement替换substring
+表达式|含义  
+:---:|:---:  
+${#string}|$string的长度  
+${string:position}|string中，从位置$position开始提取字符串  
+${string:position:length}|string中，从位置$position开始提取长度为length的字符串  
+${string#substring}|string中，从头开始匹配substring（最短匹配）并删除，如果没匹配则输出string  
+${string##substring}|string中，从头开始匹配substring（最长匹配）并删除，如果没匹配则输出string  
+${string%substring}|从string结尾开始匹配(最短匹配)并删除，如果没匹配则输出string  
+${string%%substring}|从string结尾开始匹配(最长匹配)并删除，如果没匹配则输出string  
+${string/substring/replacement}|使用replacement替代第一个substring  
+${string//substring/replacement}|使用replacement替代所有sbustring   
+${string/#substring/replacement}|如果string的前缀匹配substring，那么用replacement替换substring  
+${string/%substring/replacement}|如果string的后缀匹配substring，那么用replacement替换substring  
 
 **这一组还是比较直观的，比如字符串删除功能： #号代表从开头匹配，%代表从结尾，两个#或者%代表最长匹配；**      
 **还有字符串替换功能：一个/代表替换第一个，//则代表全部替换, /#则是开头匹配，/%是结尾匹配。**     
