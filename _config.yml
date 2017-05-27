@@ -15,10 +15,10 @@ recent_num: 20
 
 # Social account
 twitter: masonsuyan
-weibo: suyan0830
+weibo: doingdd
 github: doingdd
-instagram: suyan0830
-linkedin: suyan0830
+instagram: doingdd
+linkedin: doingdd
 
 # avatar and Favicon
 avatar: https://raw.githubusercontent.com/doingdd/img/master/d.png
@@ -26,7 +26,7 @@ favicon: https://raw.githubusercontent.com/doingdd/img/master/dd.png
 
 # disqus config
 disqus:
-  shortname: suyan-zh
+  shortname: doing
 
 # google analytics config
 ga:
