@@ -1,0 +1,155 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> <!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]--> <meta name="author" content="doing"> <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600|Droid+Sans+Mono' rel='stylesheet' type='text/css'> <link rel="shortcut icon" href="https://raw.githubusercontent.com/doingdd/img/master/dd.png" /> <link rel="stylesheet" href="/css/main.css"> <link rel="canonical" href="http://localhost:4000/2017/04/13/Python-list-usage.html"> <!-- Begin Jekyll SEO tag v2.2.2 --> <title>Python list usage | doing blog</title> <meta property="og:title" content="Python list usage" /> <meta name="author" content="doing" /> <meta property="og:locale" content="en_US" /> <meta name="description" content="本文列举了一些常用的列表操作，随着学习的深入持续更新" /> <meta property="og:description" content="本文列举了一些常用的列表操作，随着学习的深入持续更新" /> <link rel="canonical" href="http://localhost:4000/2017/04/13/Python-list-usage.html" /> <meta property="og:url" content="http://localhost:4000/2017/04/13/Python-list-usage.html" /> <meta property="og:site_name" content="doing blog" /> <meta property="og:type" content="article" /> <meta property="article:published_time" content="2017-04-13T00:00:00-04:00" /> <meta name="twitter:card" content="summary" /> <meta name="twitter:site" content="@" /> <meta name="twitter:creator" content="@doing" /> <script type="application/ld+json"> {"@context":"http://schema.org","@type":"BlogPosting","headline":"Python list usage","author":{"@type":"Person","name":"doing"},"datePublished":"2017-04-13T00:00:00-04:00","dateModified":"2017-04-13T00:00:00-04:00","description":"本文列举了一些常用的列表操作，随着学习的深入持续更新","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2017/04/13/Python-list-usage.html"},"url":"http://localhost:4000/2017/04/13/Python-list-usage.html"}</script> <!-- End Jekyll SEO tag --> <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="doing blog" /> <script src="/assets/js/prefixfree.js"></script> </head> <body> <aside id="sidebar" class="open"> <div id="sidebar-left"> <a id="sidebar-avatar" href="/"> <img id="sidebar-avatar-img" alt="" src="https://raw.githubusercontent.com/doingdd/img/master/d.png"/> </a> <div id="sidebar-social"> <a href="/pages/feed.xml" class="sidebar-social-icon feed"></a> <a href="mailto:doingduxuan@163.com" class="sidebar-social-icon email"></a> <!-- Generate icon by yourself https://icomoon.io/app/#/select --> <a href="https://twitter.com/masonsuyan" class="sidebar-social-icon twitter" target="_blank"></a> <a href="http://www.weibo.com/doingdd" class="sidebar-social-icon weibo" target="_blank"></a> <a href="https://github.com/doingdd" class="sidebar-social-icon github" target="_blank"></a> <a href="https://www.linkedin.com/in/doingdd" class="sidebar-social-icon linkedin" target="_blank"></a> <a href="https://www.instagram.com/doingdd" class="sidebar-social-icon instagram" target="_blank"></a> </div> <ul id="sidebar-tags"> <li class="sidebar-tag active" data-filter="recent">最新文章</li> <li class="sidebar-tag" data-filter="技术">技术</li> <li class="sidebar-tag" data-filter="工具">工具</li> <li class="sidebar-tag" data-filter="Linux">Linux</li> <li class="sidebar-tag" data-filter="Python">Python</li> <li class="sidebar-tag" data-filter="life">life</li> </ul> </div> <div id="sidebar-right"> <div id="search-box"> <input id="search-input" type="text" placeholder="Search" /> </div> <nav id="toc"> <a class="toc-link" data-tags="Linux" href="/2017/05/24/Linux-Shell-String.html"> Linux shell内置字符串操作 </a> <a class="toc-link" data-tags="Python" href="/2017/05/21/Python-library-argparse.html"> Python标准库 -- argparse </a> <a class="toc-link" data-tags="Python" href="/2017/05/20/Python-Q&A-2.html"> Python问答系列2 </a> <a class="toc-link" data-tags="Python" href="/2017/05/19/Python-Q&A-1.html"> Pyhon问答系列1 </a> <a class="toc-link" data-tags="Python" href="/2017/05/13/Python-library-json.html"> Python标准库 -- json </a> <a class="toc-link" data-tags="Python" href="/2017/05/05/Python-library-logging.html"> Python标准库 -- logging </a> <a class="toc-link" data-tags="Linux" href="/2017/05/04/Gnome-installation-on-CentOS.html"> centos 安装gnome和vnc </a> <a class="toc-link" data-tags="Python" href="/2017/05/03/Python-standard-library-tempfile.html"> Python标准库 -- tempfile </a> <a class="toc-link" data-tags="life" href="/2017/05/02/test-forms.html"> test forms </a> <a class="toc-link" data-tags="Python" href="/2017/05/01/Python-Iterator-Generator.html"> Python知识点 -- 迭代器和生成器 </a> <a class="toc-link" data-tags="Python" href="/2017/04/28/Python-lambda.html"> Python知识点 -- lambda表达式 </a> <a class="toc-link" data-tags="Linux" href="/2017/04/28/Linux-shell.html"> Linux中shell的理解和不同shell的区别 </a> <a class="toc-link" data-tags="Python" href="/2017/04/27/Python-practice-generator.html"> Python知识点 -- 装饰器 </a> <a class="toc-link" data-tags="Linux" href="/2017/04/25/linux-value.html"> Linux 环境变量 </a> <a class="toc-link" data-tags="Python" href="/2017/04/20/Python-practice-value-and-copy.html"> Python知识点 -- 变量赋值与深浅copy </a> <a class="toc-link" data-tags="Python" href="/2017/04/19/Difference-between-python2-and-python3.html"> Python2和Python3的区别 </a> <a class="toc-link" data-tags="Linux" href="/2017/04/19/Linux-content-tree.html"> Linux 目录结构 </a> <a class="toc-link" data-tags="Python" href="/2017/04/14/Python-file-process.html"> Python IO 文件处理 </a> <a class="toc-link" data-tags="Python" href="/2017/04/13/Python-list-usage.html"> Python list usage </a> <a class="toc-link" data-tags="Linux" href="/2017/03/29/basic-linux-usage.html"> Linux 基础命令 </a> <a class="toc-link" data-tags="工具" href="/2017/02/21/docker-summary.html"> Docker 使用总结 </a> <a class="toc-link" data-tags="工具" href="/2016/12/31/deploy-shadowsocks-on-ubuntu.html"> 在 Ubuntu 下部署 Shadowsocks </a> <a class="toc-link" data-tags="工具" href="/2016/12/30/deploy-l2tp-on-ubuntu.html"> 在 Ubuntu 下部署 L2TP VPN </a> <a class="toc-link" data-tags="工具" href="/2016/11/09/my-writing-tools.html"> 我使用的收藏，写作和分享工具 </a> <a class="toc-link" data-tags="技术" href="/2015/09/07/sort-algorithms.html"> 七种常见经典排序算法总结（C++实现） </a> <a class="toc-link" data-tags="工具" href="/2015/01/10/use-dropzone-and-qiniu-to-store-blog-images.html"> 使用Dropzone和七牛优化博客图床 </a> <a class="toc-link" data-tags="技术" href="/2014/04/16/insert-large-number-of-data-in-mysql.html"> MySQL大量数据插入方法性能分析比较 </a> <a class="toc-link" data-tags="工具" href="/2014/04/10/install-vagrant-in-mac.html"> 在Mac下安装使用Vagrant </a> <a class="toc-link" data-tags="工具" href="/2014/03/20/php-debug-with-xdebug.html"> 用Xdebug和Sublime调试PHP代码 </a> <a class="toc-link" data-tags="工具" href="/2014/02/12/how-to-deploy-a-blog-on-github-by-jekyll.html"> 在Github上搭建Jekyll博客和创建主题 </a> <a class="toc-link" data-tags="技术" href="/2014/01/30/understanding-the-github-workflow.html"> 了解GitHub工作流【译】 </a> <a class="toc-link" data-tags="技术" href="/2014/01/17/python-script-of-sae-log-download.html"> Python脚本--下载合并SAE日志 </a> <a class="toc-link" data-tags="工具" href="/2013/12/11/lamp-in-mac.html"> Mac下用brew搭建LNMP和LAMP开发环境 </a> <a class="toc-link" data-tags="工具" href="/2013/12/11/deploy-pptp-vpn-in-ubuntu.html"> 在ubuntu下搭建pptp vpn服务器 </a> <a class="toc-link" data-tags="工具" href="/2013/12/08/linux-command-continue.html"> Linux下多个命令连续执行方法 </a> <a class="toc-link" data-tags="技术" href="/2013/10/01/deploy-ceilometer-of-openstack.html"> 部署Ceilometer到已有环境中 </a> <a class="toc-link" data-tags="工具" href="/2013/08/28/change-bootstrap-to-3.html"> 更新前端框架到Bootstrap3 </a> <a class="toc-link" data-tags="工具" href="/2013/08/06/tools-of-reading.html"> 我与工具--阅读和知识管理 </a> <a class="toc-link" data-tags="工具" href="/2013/08/04/something-about-tools-i-used.html"> 我与工具 </a> <a class="toc-link" data-tags="技术" href="/2013/06/12/hacking-in-openstack-ceilometer-collector.html"> OpenStack Ceilometer Collector代码解读 </a> <a class="toc-link" data-tags="技术" href="/2013/06/12/hacking-in-openstack-ceilometer-api.html"> OpenStack Ceilometer数据与API源码详解 </a> <a class="toc-link" data-tags="技术" href="/2013/06/11/pipeline-of-openstack-ceilometer.html"> OpenStack Ceilometer Pipeline代码解读 </a> <a class="toc-link" data-tags="技术" href="/2013/06/11/hacking-in-openstack-ceilometer-compute-agent.html"> OpenStack Ceilometer Agent源码解读 </a> <a class="toc-link" data-tags="技术" href="/2013/06/09/learn-python-stevedore-module-in-detail.html"> 学习Python动态扩展包stevedore </a> <a class="toc-link" data-tags="技术" href="/2013/06/09/learn-python-abc-module.html"> 学习Python的ABC模块 </a> <a class="toc-link" data-tags="技术" href="/2013/06/07/learn-python-setuptools-in-detail.html"> Python包管理工具setuptools详解 </a> <a class="toc-link" data-tags="技术" href="/2013/05/27/openstack-horizon-locale.html"> OpenStack Horizon 中文本地化 </a> <a class="toc-link" data-tags="工具" href="/2013/05/23/install-mysql-and-mongo-web-admin.html"> 安装MySQL和MongoDB的WEB管理界面 </a> <a class="toc-link" data-tags="工具" href="/2013/05/22/change-to-zsh.html"> 从Bash切换到Zsh </a> <a class="toc-link" data-tags="工具" href="/2013/05/20/set-proxy-for-git-or-apt.html"> 给Git或者APT设置goagent代理 </a> <a class="toc-link" data-tags="技术" href="/2013/05/19/what-is-wsgi.html"> WSGI学习 </a> <a class="toc-link" data-tags="技术" href="/2013/05/16/deploy-openstack-grizzly-in-virtual-machine.html"> 在虚拟机单机部署OpenStack Grizzly </a> <a class="toc-link" data-tags="技术" href="/2013/05/15/learn-how-to-use-distutils.html"> 学习使用python打包工具distutils </a> <a class="toc-link" data-tags="技术" href="/2013/05/15/different-between-python-package-tools.html"> python包工具之间的关系 </a> <a class="toc-link" data-tags="技术" href="/2013/05/15/create-ubuntu-image-for-openstack.html"> 给OpenStack创建Ubuntu镜像 </a> <a class="toc-link" data-tags="技术" href="/2013/05/13/openstack-grizzly-multihost-deployment-doc.html"> OpenStack Grizzly Multihost部署文档 </a> <a class="toc-link" data-tags="技术" href="/2013/05/06/why-use-pip-over-easy-install.html"> 为什么使用pip而不是easy_install </a> <a class="toc-link" data-tags="技术" href="/2013/05/06/interactive-coding-ipython.html"> 交互式编程-IPython </a> <a class="toc-link" data-tags="技术" href="/2013/05/03/create-windows-7-image-for-openstack.html"> 给OpenStack创建Win7镜像 </a> <a class="toc-link" data-tags="技术" href="/2013/05/01/terminal-command-of-ceilometer.html"> Ceilometer的命令行使用 </a> <a class="toc-link" data-tags="技术" href="/2013/05/01/deploy-a-ceilometer-horizon-project.html"> 部署一个ceilometer-horizon项目 </a> <a class="toc-link" data-tags="技术" href="/2013/04/26/create-windows-xp-image-for-openstack.html"> 给OpenStack创建Windows XP镜像 </a> <a class="toc-link" data-tags="工具" href="/2013/04/22/wordpress-to-jekyll.html"> 博客迁移完成 </a> <a class="toc-link" data-tags="工具" href="/2013/04/22/ignore-password-in-git-push.html"> 让git push命令不再需要密码 </a> <a class="toc-link" data-tags="工具" href="/2013/04/22/highlight-of-jekyll.html"> Jekyll的中的代码高亮 </a> <a class="toc-link" data-tags="工具" href="/2013/04/22/add-svn-ignore-file.html"> 给SVN控制的项目添加忽略文件/文件夹 </a> <a class="toc-link" data-tags="工具" href="/2013/04/21/add-snippet.html"> 给sublime增加snippet </a> <a class="toc-link" data-tags="技术" href="/2013/03/27/glossary-of-ceilometer.html"> OpenStack Ceilometer的一些术语 </a> <a class="toc-link" data-tags="工具" href="/2013/03/25/tools-of-sever-deployment.html"> 服务器自动化部署及运维常见工具 </a> <a class="toc-link" data-tags="工具" href="/2013/03/25/open-tcp-port-of-libvirt.html"> Linux下开启Libvirtd的tcp监控 </a> <a class="toc-link" data-tags="技术" href="/2013/03/21/vnc-vs-rdp.html"> VNC和远程桌面的区别 </a> <a class="toc-link" data-tags="技术" href="/2013/03/21/introduction-of-ceilometer.html"> OpenStack Ceilometer项目简介 </a> <a class="toc-link" data-tags="技术" href="/2013/03/20/different-bewteen-kvm-xen-qemu.html"> 虚拟化中KVM, Xen, Qemu的区别 </a> <a class="toc-link" data-tags="技术" href="/2013/03/20/debug-and-modify-openstack-horizon.html"> 调试和修改OpenStack中的Horizon部分 </a> <a class="toc-link" data-tags="工具" href="/2013/02/25/quick-open-in-windows.html"> win7快速打开应用程序或文件 </a> <a class="toc-link" data-tags="工具" href="/2013/01/16/create-remote-resp.html"> git创建远程库 </a> <a class="toc-link" data-tags="工具" href="/2013/01/09/remote-access-of-mysql.html"> MySQL远程访问 </a> <a class="toc-link" data-tags="工具" href="/2012/12/30/share-windows-and-linux.html"> Windows和Linux切换最终解决方案 </a> <a class="toc-link" data-tags="技术" href="/2012/11/08/openstack-nova-internal.html"> OpenStack Nova内部机制【译】 </a> </nav> </div> </aside> <main id="main" class="open"> <article class="post container"> <div class="post-meta"> <span class="post-meta-span date">2017 April 13</span> </div> <h1 class="post-title">Python list usage</h1> <h4 id="本文列举了一些常用的列表操作随着学习的深入持续更新">本文列举了一些常用的列表操作，随着学习的深入持续更新</h4> <h1 id="1-序列的通用操作">1. 序列的通用操作</h1> <h2 id="索引">索引</h2> <p>list的定义及索引：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; number = [1, 2, 3, 'Tom', 'James']
+&gt;&gt;&gt; number[0]
+1
+&gt;&gt;&gt; number[4]
+'James'
+&gt;&gt;&gt; mix = ['Yidu', number]
+&gt;&gt;&gt; mix[1]
+[1, 2, 3, 'Tom', 'James']
+</code></pre></div> <p>注意，索引的下标从<strong>0</strong>开始</p> <h2 id="分片">分片</h2> <p>索引是访问单个元素，分片是访问一定范围的元素，举例：</p> <div class="highlighter-rouge"><pre class="highlight"><code>#使用range函数创建一个list	
+&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#注意，"0:9"选取范围包括"第0个"，不包括"第9个"
+&gt;&gt;&gt; numbers[0:9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8] ## pythonic way of list using 列出全部元素：
+
+&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; numbers[:]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre></div> <p>列出最后一个元素：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers[-1]
+9
+</code></pre></div> <p>列出后三个元素：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers[-3:]
+[7, 8, 9]
+</code></pre></div> <p>列出前三个元素：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers[:3]
+[0, 1, 2]
+</code></pre></div> <p>步长提取：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers[0:5:2]
+[0, 2, 4]
+</code></pre></div> <p>从右到左提取（步长为负）：</p> <div class="highlighter-rouge"><pre class="highlight"><code># 注意起始元素包含，结尾元素不包含
+&gt;&gt;&gt; numbers[5:0:-2]
+[5, 3, 1]
+</code></pre></div> <p>得到了逆序排列list的方法：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers[::-1]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</code></pre></div> <h2 id="序列相加">序列相加</h2> <p>只有同类能相加</p> <div class="highlighter-rouge"><pre class="highlight"><code>#相加不会改变a或b的值
+&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = [4, 5, 6]
+&gt;&gt;&gt; a + b
+[1, 2, 3, 4, 5, 6]  
+
+&gt;&gt;&gt; 'hello' + 'world'
+'helloworld'
+&gt;&gt;&gt; a + 'hello'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: can only concatenate list (not "str") to list
+</code></pre></div> <h2 id="乘法">乘法</h2> <p>字符串乘法：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; 'ha' * 10
+'hahahahahahahahahaha'
+</code></pre></div> <p>list乘法：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; ['hei'] * 10
+['hei', 'hei', 'hei', 'hei', 'hei', 'hei', 'hei', 'hei', 'hei', 'hei']
+
+&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; a * 5
+[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+</code></pre></div> <h2 id="len-max-and-min">len, max and min</h2> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; len(numbers)
+10
+&gt;&gt;&gt; max(numbers)
+9
+&gt;&gt;&gt; min(numbers)
+0
+</code></pre></div> <h1 id="2-list-方法">2. list 方法</h1> <p>方法是与对象有紧密关系的函数。</p> <h2 id="append">append</h2> <p>append在list末尾添加新的对象，注意，append会修改原list、</p> <div class="highlighter-rouge"><pre class="highlight"><code>a = [1, 2, 3]
+&gt;&gt;&gt; a.append('last')
+&gt;&gt;&gt; a
+[1, 2, 3, 'last']
+</code></pre></div> <h2 id="extend">extend</h2> <p>extend在list末尾追加<strong>多个</strong>值，注意和append的区别：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; a = [1, 2, 3]
+&gt;&gt;&gt; b = [4, 5, 6]
+&gt;&gt;&gt; a.append(b)
+&gt;&gt;&gt; a
+[1, 2, 3, [4, 5, 6]]
+&gt;&gt;&gt; a.extend(b)
+&gt;&gt;&gt; a
+[1, 2, 3, [4, 5, 6], 4, 5, 6] 而且，extend和“+”的区别是， 加号操作不会更改原list，extend会
+</code></pre></div> <h2 id="count">count</h2> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; ['to', 'be', 'or', 'not', 'to', 'be'].count('to')
+2
+&gt;&gt;&gt; ['to', 'be', 'or', 'not', ['to', 'be']].count('to')
+1
+&gt;&gt;&gt; ['to', 'be', 'or', 'not', ['to', 'be']].count(['to', 'be'])
+1
+</code></pre></div> <p>上面这几行证明count只计算“对象”的次数，而不是某个字符串。</p> <h2 id="index">index</h2> <p>index 可以理解成反向索引，是知道list元素的内容，获取它的第一次出现的位置</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; Shakespeare = ['to', 'be', 'or', 'not', 'to', 'be']
+&gt;&gt;&gt;&gt; Shakespeare.index('be')
+1
+&gt;&gt;&gt; Shakespeare[1]
+'be'
+</code></pre></div> <h2 id="insert">insert</h2> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; numbers.insert(3, 'hei')
+&gt;&gt;&gt; numbers
+[0, 1, 2, 'hei', 3, 4, 5, 6, 7, 8, 9]
+</code></pre></div> <p>insert 会在给定的位置插入，当前位置的元素全部后移</p> <h2 id="list元素的删除del-pop-remove">list元素的删除，del, pop, remove</h2> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = range(10) + ['to', 'be', 'not to be']
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'to', 'be', 'not to be']
+&gt;&gt;&gt; del numbers[9]    #删除位置“9”上的元素
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 'to', 'be', 'not to be']
+&gt;&gt;&gt; numbers.remove('be')   # 删除元素值为‘be’第一个匹配元素
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 'to', 'not to be']
+&gt;&gt;&gt; numbers.pop()     #默认删除最后一个元素
+'not to be'
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 'to']
+&gt;&gt;&gt; numbers.pop(2)    #删除位置‘2’上的元素
+2
+&gt;&gt;&gt; numbers
+[0, 1, 3, 4, 5, 6, 7, 8, 'to']
+</code></pre></div> <p><strong>注意</strong>，pop和append的正好相反，相当于对堆栈的操作(先进后出，LIFO),如果要实现先进先出(FIFO),则需用<strong>pop(0)</strong>和append来实现。 而且，pop是唯一的可以修改list并返回元素值的方法</p> <h2 id="reverse">reverse</h2> <div class="highlighter-rouge"><pre class="highlight"><code>reverse 将list中的元素反向存放，更改list内容：
+&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; numbers.reverse()
+&gt;&gt;&gt; numbers
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</code></pre></div> <p>也可以不更改list的值，仅做逆向排序（加上片提取，逆向排序有两种方法了）：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; list(reversed(numbers))
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+&gt;&gt;&gt; numbers
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre></div> <h2 id="sort-排序">sort 排序</h2> <p>sort排序更改原list的内容，但是没有返回值：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = [3, 2, 4, 1, 5]
+&gt;&gt;&gt; numbers.sort()
+&gt;&gt;&gt; numbers
+[1, 2, 3, 4, 5]
+</code></pre></div> <p>直接获取sort的返回值是错误的：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = [3, 2, 4, 1, 5]
+&gt;&gt;&gt; y = numbers.sort()
+&gt;&gt;&gt; print y
+None
+</code></pre></div> <p>如果想保留原list，并且获取sort后的输出：</p> <div class="highlighter-rouge"><pre class="highlight"><code>&gt;&gt;&gt; numbers = [3, 2, 4, 1, 5]
+&gt;&gt;&gt;&gt; x = numbers[:]   #注意，直接使用x=numbers会导致两个list只想同一地址，也就是共同变化
+&gt;&gt;&gt; x.sort()
+&gt;&gt;&gt; print x, '\n', numbers
+[1, 2, 3, 4, 5] 
+[3, 2, 4, 1, 5]
+#另一种办法，使用sorted：
+&gt;&gt;&gt; numbers = [3, 2, 4, 1, 5]
+&gt;&gt;&gt; x = sorted(numbers)
+&gt;&gt;&gt; print x
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt; print numbers
+[3, 2, 4, 1, 5]
+</code></pre></div> <p>sort还有一些参数可以指定：</p> <div class="highlighter-rouge"><pre class="highlight"><code>#按字符串长度排序
+&gt;&gt;&gt; x = ['to be', 'Shakspear', 'not to be', 'whatever']
+&gt;&gt;&gt; x.sort(key=len)
+&gt;&gt;&gt; x
+['to be', 'whatever', 'Shakspear', 'not to be']
+
+#反向排序
+&gt;&gt;&gt; numbers = range(10)
+&gt;&gt;&gt; numbers.sort(reverse = True)
+&gt;&gt;&gt; numbers
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</code></pre></div> <h2 id="列表推导式列表综合">列表推导式（列表综合）</h2> <p>列表推导式(list comprehension) 是利用其它<strong>列表</strong>创建<strong>新列表</strong>的一种方法，它的原理类似于for循环。 打印出10以内能被三整除的数及其平方：</p> <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">81</span><span class="p">]</span>
+</code></pre></div> <p>复杂点：</p> <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+</code></pre></div> </article> <div class="post-share"> <div class="container"> <a href="https://twitter.com/share?url=http://localhost:4000/2017/04/13/Python-list-usage.html&text=Python list usage" target="_blank" class="post-share-icon twitter"></a> <a href="https://www.evernote.com/clip.action?url=http://localhost:4000/2017/04/13/Python-list-usage.html&title=Python list usage" target="_blank" class="post-share-icon evernote"></a> <a href="http://service.weibo.com/share/share.php?url=http://localhost:4000/2017/04/13/Python-list-usage.html&title=Python list usage" target="_blank" class="post-share-icon weibo"></a> </div> </div> <div class="comment container"> <div id="disqus_thread"> </div> </div> <div class="footer"> <div class="container"> <p class="footer-entry">All content is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></p> <p class="footer-entry">Buit with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll theme</a> • Hosted on <a href="https://pages.github.com/" target="_blank">Github</a></p> </div> </div> </main> <button id="menu" class="open"> <span id="menu-icons"></span> </button> <button id="post-toc-menu"> <span id="post-toc-menu-icons"></span> </button> <div id="post-toc"> <span id="post-toc-title">Table of Contents</span> <ul id="post-toc-ul"></ul> </div> <script src="/assets/js/jquery-2.1.3.min.js"></script> <script src="/assets/js/jquery.pjax.js"></script> <script src="/assets/js/nprogress.js"></script> <script src="/assets/js/main.js"></script> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-54767140-1', 'doing.cool'); ga('send', 'pageview'); </script> </body> </html>
