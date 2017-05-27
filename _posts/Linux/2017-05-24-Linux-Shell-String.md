@@ -10,7 +10,7 @@ title: Linux shell内置字符串操作
 ## 一、判断读取字符串值
 
 表达式|含义  
-:---:|:---:  
+:---:|---  
 ${var}|变量var的值，与$var相同  
 ${var-DEFAULT}|如果var没有被声明，则以$DEFAULT为其值  
 ${var:-DEFAULT}|如果var没声明，或者值为空，则以$DEFAULT为其值  
