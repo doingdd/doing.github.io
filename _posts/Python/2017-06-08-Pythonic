@@ -2,7 +2,7 @@
 layout: post
 category: Python
 title: Python中优雅的用法
-----
+---
 
 1. 递归重构嵌套list(两重嵌套):
 ```python
