@@ -2,7 +2,9 @@
 layout: post
 category: Linux
 title: wget 命令用法(转)
-**本文转自： [月小升博客-wget](http://java-er.com/blog/wget-useage-x/)**  
+---
+
+**本文转自： [月小升博客-wget](http://java-er.com/blog/wget-useage-x/)**    
 
 
 有时候我们需要wget一个文件下载到指定的目录下，或者重命名成指定的名字
