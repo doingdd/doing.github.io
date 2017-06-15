@@ -13,5 +13,7 @@ title: Stack Overflow收藏汇总
 主要是os.path.isfile 和os.path.exists  
 
 3. stack-overflow: [What is a metaclass in Python?](https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)   
-解释元类的概念。
-  
+解释元类的概念。  
+
+4. [ssh 认证原理](http://itindex.net/detail/48724-ssh-%E8%AE%A4%E8%AF%81-%E5%8E%9F%E7%90%86?utm_source=tuicool&utm_medium=referral)
+解释了一般ssh登陆的主要过程和公玥免密码的原理。
