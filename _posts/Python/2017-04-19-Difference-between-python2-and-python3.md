@@ -84,4 +84,11 @@ False
 True
 ```
 在python3中，需要使用hasattr(func, __call__)代替。
+# open()
+built-in function open() has some more parameters in python 3:   
+
+python2.7: `open(name[, mode[, buffering]])`      
+
+python3.5: `open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)`
+ 
 ####未完待续。。。
