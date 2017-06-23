@@ -90,5 +90,9 @@ built-in function open() has some more parameters in python 3:
 python2.7: `open(name[, mode[, buffering]])`      
 
 python3.5: `open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)`
+# range(), xrange()
+python2: range()返回list，xrange()返回迭代对象节省内存。
+python3: 没有xrange，range()扩展了这一功能。
+
  
 ####未完待续。。。
