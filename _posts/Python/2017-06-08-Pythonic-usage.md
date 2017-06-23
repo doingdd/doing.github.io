@@ -4,7 +4,7 @@ category: Python
 title: Python中优雅的用法
 ---
 
-1. 递归重构嵌套list(两重嵌套):
+## 1. 递归重构嵌套list(两重嵌套):  
 
 ```python
 >>> lst
@@ -30,13 +30,13 @@ title: Python中优雅的用法
 >>> [x for l in a for x in l]
 [1, 2, 3, 4, 5, 6]
 ```
-2. 遍历元素
+## 2. 遍历元素
 ```python
 for i in xrange(6）：
   print i
 ```
 
-3. 同时遍历索引和值：
+## 3. 同时遍历索引和值：
 ```python
 >>> colors = ['red', 'green', 'blue', 'yellow']
 >>> for i, color in enumerate(colors):
@@ -47,12 +47,12 @@ for i in xrange(6）：
 2 --> blue
 3 --> yellow
 ```
-4. 遍历字典
+## 4. 遍历字典
 ```python
 for k, v in iteritems(dict):
         print k, "-->", v
 ```
-5. 字符串连接：
+## 5. 字符串连接：
 ```python
 # 加号：
 >>> url = "111" + "222"
@@ -72,7 +72,7 @@ for k, v in iteritems(dict):
 '111222'
 ```
 
-6. 装饰器
+## 6. 装饰器
 简单的装饰器定义：
 ```python
 #!/usr/bin/python
