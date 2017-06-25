@@ -4,7 +4,7 @@ category: Python
 title: Python中优雅的用法
 ---
 
-## 1. 递归重构嵌套list(两重嵌套):  
+## 递归重构嵌套list(两重嵌套):  
 
 ```python
 >>> lst
@@ -30,13 +30,24 @@ title: Python中优雅的用法
 >>> [x for l in a for x in l]
 [1, 2, 3, 4, 5, 6]
 ```
-## 2. 遍历元素
+##  遍历元素
 ```python
 for i in xrange(6）：
   print i
 ```
+## 切片
+```python
+iterms = range(10)
+# 从索引值为1到索引值为3的元素：
+iterms[1:4]
+# 奇数
+items[1::2]
+# 拷贝
+copy_iterms = iterms[:]
+```
+详见[Python list usage](http://doing.cool/2017/04/13/Python-list-usage.html)
 
-## 3. 同时遍历索引和值：
+##  同时遍历索引和值：
 ```python
 >>> colors = ['red', 'green', 'blue', 'yellow']
 >>> for i, color in enumerate(colors):
@@ -47,12 +58,30 @@ for i in xrange(6）：
 2 --> blue
 3 --> yellow
 ```
-## 4. 遍历字典
+## 遍历字典
 ```python
 for k, v in iteritems(dict):
         print k, "-->", v
 ```
-## 5. 字符串连接：
+## 获取字典元素
+正常用法（如果存在返回值，不存在返回指定值）：
+```python
+d = {'name': 'foo'}
+if d.has_key('name'):
+  print d['name']
+else:
+  print 'unknown'
+```
+pythonic:
+```python
+d.get('name', 'unknown')
+```
+也可以用于字典赋值：
+```python
+d['name'] = d.get('name', 'doing')
+```
+
+## 字符串连接：
 ```python
 # 加号：
 >>> url = "111" + "222"
@@ -104,5 +133,47 @@ Now just do it.
 doing End.
 ```
 
+## 真值判断
+检查某个对象是否为真或者是否不为空时，pythonic的用法是直接if 后接对象， python中的真假值对照表：
 
+类型|False|True
+---|---|---
+布尔|False(与0等价)|True(与1等价)
+字符串|""(空字符串)|非空字符串(如" ", "blog")
+数值|0, 0.0| 非零的数值(如0.1， -1)
+容器|{},(),[]| 至少有一个元素(如[None], (None,), [""])
+None|None|非None对象
 
+```python
+>>> lst = (None,)
+>>> print lst if lst else "Nothing"
+(None,)
+
+>>> lst = []
+>>> print lst if lst else "Nothing"
+Nothing
+
+>>> lst = [None]
+>>> print lst if lst else "Nothing"
+[None]
+
+>>> lst = 0.0
+>>> print lst if lst else "Nothing"
+Nothing
+>>> lst = -1
+>>> print lst if lst else "Nothing"
+-1
+```
+
+## 三目运算
+
+已经在**真值运算**里用到： b?x:y的形式.
+```python
+text = '男' if gender == 'male' else '女'
+```
+注意else后不要重复写运行语句，`text = '女'`， 会报错
+```python
+>>> gender = 'female'
+>>> text = '男' if gender == 'male' else '女'
+>>> print text
+女

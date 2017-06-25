@@ -67,3 +67,24 @@ print [i for i in Fib(value)]
 -> ./Fib.py 5
 [0, 1, 1, 2, 3]
 ```
+还有一种写法，返回小于某个特定值的斐波那契：
+```python
+def fib(n):
+  a, b = 0, 1
+  while a < n:
+    yield a
+    a, b = b, a + b
+```
+输出：
+```python
+>>> for i in fib(10):
+...     print i
+...     
+0
+1
+1
+2
+3
+5
+8
+```
