@@ -17,3 +17,6 @@ title: Stack Overflow收藏汇总
 
 4. [ssh 认证原理](http://itindex.net/detail/48724-ssh-%E8%AE%A4%E8%AF%81-%E5%8E%9F%E7%90%86?utm_source=tuicool&utm_medium=referral)
 解释了一般ssh登陆的主要过程和公玥免密码的原理。
+
+5. software engineering[Why is Global State so Evil?](https://softwareengineering.stackexchange.com/questions/148108/why-is-global-state-so-evil)   
+介绍了全局变量或者全局状态的弊端。
