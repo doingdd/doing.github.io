@@ -115,4 +115,21 @@ class Solution(object):
                 if nums[key] + v == target:
                     return [key, key+k+1]
 ```
-和solution 方法一类似，属于暴力循环，时间复杂度O(n^2)
+和solution 方法一类似，属于暴力循环，时间复杂度O(n^2)  
+顺便写一下leetcode报过错的几个测试用例，从测试的角度看很有意义：
+case1: 输入 [3, 4, 2], target = 6  
+case2: 输入[3,3]，target = 6  
+case3: 输入[3, 2, 3]， target = 6  
+值得一提的是case2和case3，case2直接导致使用list.index(value)的办法失效，因为其返回的index只能是第一个匹配的index， case3导致使用if len(nums) == 2这种判断方式不能覆盖，所以产生了最后的答案：return [key, key+k+1]，两个case的本质是临界条件输入，玩的溜。    
+**最后，看看人家写的时间复杂度O(n)的方案，wonderful：**  
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        d = {}
+        for i, n in enumerate(nums):
+            m = target - n
+            if m in d:
+                return [d[m], i]
+            else:
+                d[n] = i
+```
