@@ -88,3 +88,31 @@ def fib(n):
 5
 8
 ```
+## leetcode Q1: Two Sum
+Question:
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.  
+
+Example:
+```python
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+```
+思路：遍历list中的每个元素与其余元素的和，判断是否为target，如果是，需要返回这两个元素的index。用到了两次遍历：
+```python
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        for key in xrange(len(nums)-1):
+            for k, v in enumerate(nums[key+1:]):
+                if nums[key] + v == target:
+                    return [key, key+k+1]
+```
+和solution 方法一类似，属于暴力循环，时间复杂度O(n^2)
