@@ -133,3 +133,61 @@ class Solution(object):
             else:
                 d[n] = i
 ```
+
+## leetcode, Q3: Longest Substring Without Repeating Characters
+**问题：** 给定一个字符串，找到其长度最长的不包含重复字符的子字符串。   
+**例：**   
+"abcabcbb"，答案是"abc",输出为3    
+"bbbbb",答案是"b",输出为1     
+"pwwkew",答案是"wke"，输出为3   
+"",输出为0    
+"a",输出为1    
+
+**思路：**一开始的思路是用两层遍历，将遍历过的元素从在一个列表中，然后查看元素是否已经出现过，如果出现过则把当前的列表长度记下来，再把原字符串的第一个元素剔除，再继续下一轮。这种暴力循环虽然能解决问题，但是遇到长字符串的case就time out了，所以有了如下改进版，时间复杂度为O(n):  
+```python
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+		# 把字符串转成列表
+        l = list(s)
+    	# 创建一个列表用来存放所有符合要求的子字符串的长度
+        len_list = []
+		# 创建一个list，用来存放子字符串，每次遍历的元素都要和其比对
+        return_sub_l = []
+        
+        for v in l:
+            if v not in return_sub_l:
+                return_sub_l.append(v)
+            else:
+				# 如果元素已经出现过，则把之前的子字符串的长度保存
+				# 并把子字符串中重复元素前的元素全删除，继续遍历
+                len_list.append(len(return_sub_l))
+                return_sub_l[:return_sub_l.index(v)+1] =[]
+                return_sub_l.append(v)
+      
+        len_list.append(len(return_sub_l))
+
+        return max(len_list)
+```
+然后，看看大神的方法，发现它们经常用字典解决问题(字典是hastable，时间复杂度为O(1)：
+```python
+class Solution:
+    # @return an integer
+    def lengthOfLongestSubstring(self, s):
+        start = maxLength = 0
+        usedChar = {}
+        
+        for i in range(len(s)):
+            if s[i] in usedChar and start <= usedChar[s[i]]:
+                start = usedChar[s[i]] + 1
+            else:
+                maxLength = max(maxLength, i - start + 1)
+
+            usedChar[s[i]] = i
+
+        return maxLength
+```
+这个逻辑有点复杂，相当于计算起始位和截止位之差的思路，用userChar存放元素和其位置，然后只要没循环到重复字符，长度就一直随着i的增长而加一，一旦碰到重复字符，就将起始位设成当前字符所在位置。maxlenth用来存放之前循环过的子字符串最长长度。
