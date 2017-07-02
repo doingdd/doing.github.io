@@ -191,3 +191,54 @@ class Solution:
         return maxLength
 ```
 这个逻辑有点复杂，相当于计算起始位和截止位之差的思路，用userChar存放元素和其位置，然后只要没循环到重复字符，长度就一直随着i的增长而加一，一旦碰到重复字符，就将起始位设成当前字符所在位置。maxlenth用来存放之前循环过的子字符串最长长度。
+
+## leetcode Q7.Reverse Integer
+**题目：** 反转整数    
+**例**： x = 123, return 321  
+x = -123, return -321
+**假设：**  输入为32位带符号整数，如果反转后超过32位限制，应该返回0  
+
+**思路**：将整数转换成字符串再转换成list，然后reverse list返回。需要判断是否为负数的情况，结果需要判断是否overflow。
+```python
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x >= 0:
+			# 整数为正则直接转换后反转
+            temp = ''.join(list(str(x))[::-1])
+        else:
+			# 为负则先反转不带符号的位数，再加上符号位
+            temp = '-' + ''.join(list(str(x))[:0:-1])
+        
+        reverse_x = int(temp)
+
+		# 带符号32位整数的范围是 -2**31 ~~ 2**31-1
+        if -(2**31) <= reverse_x < 2**31:
+            return reverse_x
+        else:
+            return 0
+            
+```
+然后，膜拜一下牛人的写法：  
+```python
+def reverse(self, x):
+    s = cmp(x, 0)
+    r = int(`s*x`[::-1])
+    return s*r * (r < 2**31)
+```
+`cmp(x,y)`的用法是比较两数大小，返回值分别为1(>), -1(<), 和0(==).
+反引号"`"的作用是特定的对象转换成string，这里的第二句:  
+```python
+r = int(`s*x`[::-1])
+```
+首先用符号位s乘以数字本身，得到了其绝对值，再转成字符串接着切片反转，返回的是整数绝对值的reverse结果，cool。  
+最后s*r把符号位附上，接着乘以一个flag(overflow则乘以0，不overflow则乘以1)。  
+总结几点：  
+1.反引号的用法  
+2.cmp的用法  
+3.整数绝对值的取法
+4.string也可以切片，不用非得转成list
+5.判断x<y的返回值实际上等价于0或者1
