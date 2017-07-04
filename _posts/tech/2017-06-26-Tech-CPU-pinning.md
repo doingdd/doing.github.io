@@ -6,7 +6,7 @@ title: CPU pinning(Processor affinity)
 **本文介绍cpu pinning的相关概念，译自[Wikipedia -- Processor affinity](https://en.wikipedia.org/wiki/Processor_affinity)**   
 ## CPU pinning(Processor affinity)
 ### 概念
-Processor affinity 中文叫处理器关联(或者cpu pinning: 处理器亲和)，提供了进程或者线程与特定CPU的绑定和解绑功能。可以看做是在对称多处理（SMP,symmetric multiprocessing）操作系统中的本地中心队列的调度算法的改进(好绕)。队列中的每个元素都有一个标签指向其关联CPU，分配资源时，每个任务优先分给其绑定CPU。  
+Processor affinity 中文叫**处理器关联**(或者cpu pinning: 处理器亲和)，提供了进程或者线程与特定CPU的绑定和解绑功能。可以看做是在对称多处理（SMP,symmetric multiprocessing）操作系统中的本地中心队列的调度算法的改进(好绕)。队列中的每个元素都有一个标签指向其关联CPU，分配资源时，每个任务优先分给其绑定CPU。  
 ### 优点
 处理器关联的优点是： 当一个进程在处理器上运行后，其残留(例如数据缓存)会存在在当前CPU上，如果在进程调度的时候保证每个进程只在同一个CPU上运行，可以提高其性能(减少了缓存丢失的事件发生)。  处理器关联的一个典型应用是多个实例(非多线程)软件，如图形渲染软件。   
 ### 实现
