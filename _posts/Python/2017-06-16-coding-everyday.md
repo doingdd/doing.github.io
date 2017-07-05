@@ -241,4 +241,71 @@ r = int(`s*x`[::-1])
 2.cmp的用法  
 3.整数绝对值的取法
 4.string也可以切片，不用非得转成list
-5.判断x<y的返回值实际上等价于0或者1
+5.判断x<y的返回值实际上等价于0或者1  
+
+## leetcode Q5.Longest Palindromic Substring
+**题目：**给定字符串s，找出其最长回文串，假设字符串不超过1000位。    
+**例：**input：'babad' -> output: 'bab' or 'aba'   
+input: 'cbbd -> output: 'bb'    
+input: 'abc' -> output: 'c'  
+input: '' -> output: ''  
+**思路：**回文串指的的是正读反读都一样的字符串,aba, abcba, cc等都属于正反都一样的。核心思路是遍历字符串，判断当前字符是否在之前出现过，如果出现过则切片形成子字符串，然后判断其正序和逆序是否相等。找出所有的回文串之后，判断其长度并返回最长的。  
+给这个题跪了，case情况是完全覆盖了，可是只能写出复杂度O(n^2)的答案了(slicing and reverse is O(k) where k is the sliced/reversed string length)，leetcode没给过，超时了。。。其实最长的case也就处理384ms，想不出更好的办法了，如下：  
+```python
+def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+		# d used to store single charactor and its index.
+		# consider one charactor appears several times, its value is a list as d = {'a':[0, 1]}
+        d = {}
+		# palin_s store the palindormic substring and its length.
+        palin_s = {}
+        max_len = 0
+        max_palin_s = ""
+        if len(s) == 1:
+            return s
+        if not s:
+            return ""
+        for k, v in enumerate(s[:]):
+            if v in d:
+                for i in d[v]:
+                    t_s = s[i:k+1]
+                    if t_s[:] == t_s[::-1]:
+                        palin_s[t_s] = len(t_s)
+                
+            d[v] = d.get(v,[])
+            d[v].append(k)
+        palin_s[v] = 1
+    
+        for k, v in palin_s.items():
+           # print "k,v = {},{}".format(k, v)
+            if v > max_len:
+                print "v = ", v
+                max_len = v
+                max_palin_s = k
+                
+        return max_palin_s
+```
+迫不及待看看大牛的办法： 
+```python
+class Solution:
+    # @return a string
+    def longestPalindrome(self, s):
+        if len(s)==0:
+        	return 0
+        maxLen=1
+        start=0
+        for i in xrange(len(s)):
+        	if i-maxLen >=1 and s[i-maxLen-1:i+1]==s[i-maxLen-1:i+1][::-1]:
+        		start=i-maxLen-1
+        		maxLen+=2
+        		continue
+
+        	if i-maxLen >=0 and s[i-maxLen:i+1]==s[i-maxLen:i+1][::-1]:
+        		start=i-maxLen
+        		maxLen+=1
+        return s[start:start+maxLen]
+```
+这个复杂度严格说不算O(n^2)，它比O(n^2)要快的多，因为分片是调用c接口实现的，实际上的复杂度应该是O(k)。

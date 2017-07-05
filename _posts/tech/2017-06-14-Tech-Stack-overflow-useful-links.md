@@ -20,3 +20,6 @@ title: Stack Overflow收藏汇总
 
 5. software engineering[Why is Global State so Evil?](https://softwareengineering.stackexchange.com/questions/148108/why-is-global-state-so-evil)   
 介绍了全局变量或者全局状态的弊端。
+
+6. [python内置结构算法的时间复杂度](https://www.douban.com/note/491584335/)  
+介绍大部分的时间复杂度。
