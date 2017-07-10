@@ -23,3 +23,6 @@ title: Stack Overflow收藏汇总
 
 6. [python内置结构算法的时间复杂度](https://www.douban.com/note/491584335/)  
 介绍大部分的时间复杂度。
+
+7. [python是解释型的还是编译型的？为什么有这么多python](http://www.oschina.net/translate/why-are-there-so-many-pythons)
+详细介绍了python各种实现的关系，还有python究竟算成解释型还是编译型(确切说Cpython是解释型，但具备编译特性)
