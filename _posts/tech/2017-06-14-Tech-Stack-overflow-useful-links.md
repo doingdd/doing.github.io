@@ -26,3 +26,6 @@ title: Stack Overflow收藏汇总
 
 7. [python是解释型的还是编译型的？为什么有这么多python](http://www.oschina.net/translate/why-are-there-so-many-pythons)
 详细介绍了python各种实现的关系，还有python究竟算成解释型还是编译型(确切说Cpython是解释型，但具备编译特性)
+
+8. [如何理解云计算？很简单，就像吃货想吃披萨了...](http://www.chinacloud.cn/show.aspx?id=19758&cid=18)
+形象的比喻，解释了Iaas, Paas, Saas的概念及区别。
