@@ -88,4 +88,4 @@ bs4解析后的内容个默认时unicode，这个将其转成UTF-8存储。
 ```
 这里加载了提前下载好的ttf文件，定义字体大小。
 
-最后，源代码见GitHub：
+最后，源代码见GitHub：[doingdd/spider_liepin](https://github.com/doingdd/spider_liepin)
