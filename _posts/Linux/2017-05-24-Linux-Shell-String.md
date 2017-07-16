@@ -20,8 +20,8 @@ ${var+OTHER}|如果var声明了，那么其值则为$OTHER，否则为null字符
 ${var:+OTHER}|如果var被设置了，那么其值为$OTHER，否则为null字符串  
 ${var?ERR_MSG}|如果var没声明，打印$ERR_MSG  
 ${var:?ERR_MSG}|如果var没被设置，打印$ERR_MSG  
-${!varprefix*}|匹配之前所有已varprefix开头进行声明的变量  
-${!varprefix@}|匹配之前所有已varprefix开头进行声明的变量  
+${!varprefix*}|匹配之前所有以varprefix为开头的变量  
+${!varprefix@}|匹配之前所有以varprefix为开头的变量(和上面类似)  
 
 上代码:  
 ```shell
@@ -101,7 +101,8 @@ ${string/#substring/replacement}|如果string的前缀匹配substring，那么�
 ${string/%substring/replacement}|如果string的后缀匹配substring，那么用replacement替换substring  
 
 **这一组还是比较直观的，比如字符串删除功能： #号代表从开头匹配，%代表从结尾，两个#或者%代表最长匹配；**      
-**还有字符串替换功能：一个/代表替换第一个，//则代表全部替换, /#则是开头匹配，/%是结尾匹配。**     
+**还有字符串替换功能：一个/代表替换第一个，//则代表全部替换, /#则是开头匹配，/%是结尾匹配。**      
+**注意，substring可以是正则表达式**
 
 
 ## 三、性能比较
