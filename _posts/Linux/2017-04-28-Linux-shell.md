@@ -93,9 +93,9 @@ It's True
 ```
 
 ## 数组设置方式不同
-ksh： set -A array 1 2 3
-bash: array=(1 2 3)
-关于数组index个数，ksh最多只能到1023，bash没有限制（这一条验证失败，尝试创建超过1024个元素的数组，仍然成功）
+ksh： set -A array 1 2 3   
+bash: array=(1 2 3)   
+关于数组index个数，ksh最多只能到1023，bash没有限制（这一条验证失败，尝试创建超过1024个元素的数组，仍然成功）   
 可以看到，ksh两种方式设置数组都可以：
 ```python
 [root@localhost temp]# cat ksh.sh 
