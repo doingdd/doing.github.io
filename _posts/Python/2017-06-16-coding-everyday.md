@@ -309,3 +309,89 @@ class Solution:
         return s[start:start+maxLen]
 ```
 这个复杂度严格说不算O(n^2)，它比O(n^2)要快的多，因为分片是调用c接口实现的，实际上的复杂度应该是O(k)。
+
+## Leetcode Q9 Palindrome Number
+Determine whether an integer is a palindrome. Do this without extra space.
+题目：确定一个整数是否是回文整数。   
+思路: 负数首先肯定要排除，比较容易想到的方法是倒叙排列之后判断是否和原字符串一致，但是考虑到空间溢出问题，尝试用回文字符的概念解决。  
+[Palindromic number](https://en.wikipedia.org/wiki/Palindromic_number)  
+任何一个十进制的整形数字，都可以写成：
+x = a0*10^0 + a1*10^1 +a2*10^2 + ... + ak*10^k
+当且仅当a[i] = a[k-i]时，x为回文数字。  
+例如： 121 = 1*10^0 + 2*10^1 + 1*10^2, 这时k=2，当i=0,时，a[0] = a[2-0] = 1。  
+当i=1时，a[1] = a[2-1] = 2  
+所以，算法思路的核心就是在遍历每一位的同时，判断a[i]是否等于a[k-i]，如果等于则回文，反之则False。
+```python
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        result = False
+        if x >= 0:
+            lst_x = list(str(x))
+            k = len(lst_x) - 1
+            for i in range(len(lst_x)):
+                if lst_x[i] != lst_x[k-i]:
+                    break
+            else:
+                result = True
+        return result
+```
+看看别人的：
+```python
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        x = str(x)
+
+        if x == x[::-1]:
+            return True
+        return False
+```
+What? 不是说好不reverse integer有extra space问题么？哪呢？看来leetcode的提示也可能忽悠人。。。。我说怎么死活没想明白啥是extra space呢，原来直接倒叙排列压根没有这个问题啊。。。。。
+
+## LeetCode Q13, Roman to Integer
+**题目：**给定一个罗马字符，转换成整数，假设罗马字符的范围是1-3999.  
+**思路：**首先得了解罗马字符的表达方式，见[Wikipedia -- Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)    
+罗马字符一共是七个：  
+
+Symbol	|I	|V	|X	|L	|C	|D	|M|
+---|---|---|---|---|---|---|---
+Value|1|	5	|10	|50	|100	|500	|1,000  
+
+需要注意的是，在表达4，9，40，90的时候，为了避免连续出现4个字符，会把I,X或C放在前面表示减，如下表：  
+
+Number	|4|	9	|40	|90	|400|900
+---|---|---|---|---|---|---
+Notation|IV	|IX	|XL|XC|CD|CM  
+
+说这么热闹，还是来两个简单例子吧：  
+1954 as MCMLIV  
+1990 as MCMXC  
+2014 as MMXIV  
+```python
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        lst_s = list(s)
+        d = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        dn = {'I':-1,'X':-10,'C':-100}
+        result = 0
+        
+        for i,v in enumerate(lst_s[:-1]):
+            if lst_s[i]+lst_s[i+1] in ['IV','IX','XL','XC','CD','CM']:
+                result += dn[v]
+            else:
+                result += d[v]
+        result += d[lst_s[-1]]
+        
+        return result
+```
