@@ -400,3 +400,25 @@ class Solution(object):
 Write a function to find the longest common prefix string amongst an array of strings.
 **题目：**找出一个list中的字符串共同拥有的最长子字符串(从开始匹配)。  
 **思路：**思路是先找出list中最短的字符串，然后遍历list，判断这个最短字符串是否属于每一个字符串，如果不属于，则将最短字符串从尾部减一个字符继续判断，知道全部完成或者减成空为止。
+```python
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+		#首先排除空list和list只包含一个字符串的情况
+        if not strs:
+            return ""
+        if len(strs) == 1:
+            return strs[0]
+        # 找出最短字符串，这个内奸函数min()貌似还有没有手动遍历快
+        min_str = min(strs)
+            
+        for v in strs[:]:
+			#如果最短字符串和list中的某个元素不匹配则减一位
+            while min_str != v[:len(min_str)] and min_str:
+                min_str = min_str[:-1]
+                
+        return min_str
+```
