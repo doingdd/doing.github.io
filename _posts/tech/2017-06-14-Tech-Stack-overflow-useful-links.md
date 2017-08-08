@@ -29,3 +29,6 @@ title: Stack Overflow收藏汇总
 
 8. [如何理解云计算？很简单，就像吃货想吃披萨了...](http://www.chinacloud.cn/show.aspx?id=19758&cid=18)
 形象的比喻，解释了Iaas, Paas, Saas的概念及区别。
+
+9.[Linux shell中各种括号的用法](http://www.dwhd.org/20150708_211624.html)
+介绍了shell中各种括号的用法，比较详细，包括shell的数学运算，没介绍正则中括号的用法。
