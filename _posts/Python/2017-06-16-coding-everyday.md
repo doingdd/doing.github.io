@@ -395,3 +395,8 @@ class Solution(object):
         
         return result
 ```
+
+## LeetCode Q14: Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+**题目：**找出一个list中的字符串共同拥有的最长子字符串(从开始匹配)。  
+**思路：**思路是先找出list中最短的字符串，然后遍历list，判断这个最短字符串是否属于每一个字符串，如果不属于，则将最短字符串从尾部减一个字符继续判断，知道全部完成或者减成空为止。
