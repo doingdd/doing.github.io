@@ -422,3 +422,39 @@ class Solution(object):
                 
         return min_str
 ```
+继续看看人家29ms的方案：
+```python
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        l=0
+        if not strs:
+            return ""
+            
+        for i, letter_group in enumerate(zip(*strs)):
+            if len(set(letter_group)) > 1:
+                return strs[0][:i]
+        else:
+            return min(strs)
+```
+这个方法设计两个核心函数：  
+**zip([iterable, ...]) **   
+zip()是Python的一个内建函数，它接受一系列可迭代的对象作为参数，将对象中对应的元素打包成一个个tuple（元组），然后返回由这些tuples组成的list（列表）。若传入参数的长度不等，则返回list的长度和参数中长度最短的对象相同。利用*号操作符，可以将list unzip（解压）。 
+```python
+>>> a = [1,2,3]
+>>> b = [4,5,6]
+>>> c = [4,5,6,7,8]
+>>> zipped = zip(a,b)
+[(1, 4), (2, 5), (3, 6)]
+>>> zip(a,c)
+[(1, 4), (2, 5), (3, 6)]
+>>> zip(*zipped)
+[(1, 2, 3), (4, 5, 6)]
+```
+本例中用的是解压的办法，把list中每个元素按字符分隔并重组，例如一个['ab', 'ab', 'abc'] zip之后变成：[('a', 'a', 'a'), ('b', 'b', 'b')]。
+
+**set()**  
+将tuple或list转换成集合，由于python的集合是一个无序不重复元素集，所以完成了去重的效果。如set(('a','a','a'))得到的结果是：set(['a'])  
+
+这个方案将zip后的list遍历，判断每个元素的set结果的长度是否为1，如果为1则说明当前位属于longest common prefix string，如果大于1则停止遍历，并返回当前位之前的子字符串；如果遍历结束都为1，则说明最短字符串则为longest common prefix string。  
+
+**这个思路很值得学习，类似于把每个元素的第n位拿出来比，看是否一致，然后用zip实现了这个功能**
