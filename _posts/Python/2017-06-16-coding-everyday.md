@@ -458,3 +458,56 @@ zip()是Python的一个内建函数，它接受一系列可迭代的对象作为
 这个方案将zip后的list遍历，判断每个元素的set结果的长度是否为1，如果为1则说明当前位属于longest common prefix string，如果大于1则停止遍历，并返回当前位之前的子字符串；如果遍历结束都为1，则说明最短字符串则为longest common prefix string。  
 
 **这个思路很值得学习，类似于把每个元素的第n位拿出来比，看是否一致，然后用zip实现了这个功能**
+
+##LeetCode Q20: Valid Parentheses
+题目：有效的括号。给定字符串只包含`'('`, `')`', `'['`, `']'`, `'{'`, `'}'`中的一个或几个,判断其有效性。  
+只有"()" 或者类似 "()[]{}"或者(({}))有效，(]和([)]无效。  
+思路：这个思路纠结了很久，几种方案都不能覆盖所有case，考虑过将字符串中间切开判断左右是否对称，无法覆盖{{}}()的有效性；考虑判断左括号和右括号的数目必须一致，无法覆盖[(])的无效性；最后看到了别人的思路，知道了栈数据结构解决配对问题的思路，豁然开朗。  
+构造一个栈，遇见左括号则push，遇见右括号则pop，pop的前提是判断栈顶元素是其匹配的括号类型，判断栈顶元素不为空，这个在python中用list.append()和list.pop()可以轻松实现。  
+```python
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+		#先定义谁和谁是一对
+        d = {")":"(",
+             "]":"[",
+             "}":"{"}
+        s1 = []
+        for i in s:
+			#左括号，push
+            if i in ["(", "[", "{"]:
+                s1.append(i)
+			# 右括号，先判断栈是否为空，再判断栈顶元素是否匹配
+            if i in [")", "]", "}"]:
+                if not s1:
+                    return False
+                if s1[-1] == d[i]:
+                    s1.pop()
+                else:
+                    return False
+		# 最后判断栈是否为空，空则说明完全匹配
+        return True if not s1 else False
+```
+惯例，上别人的最快的代码：
+```python
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        d = {')': '(', ']': '[', '}': '{'}
+        stack = []
+        for c in s:
+            if c not in d:
+                stack.append(c)
+            else:
+                if not stack: return False
+                _c = stack.pop()
+                if _c != d[c]: return False
+        return not stack
+```
+思路一致，写法简洁了不少，在if时少构造两个list，应该节省了很多时间。
