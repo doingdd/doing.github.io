@@ -316,9 +316,9 @@ Determine whether an integer is a palindrome. Do this without extra space.
 思路: 负数首先肯定要排除，比较容易想到的方法是倒叙排列之后判断是否和原字符串一致，但是考虑到空间溢出问题，尝试用回文字符的概念解决。  
 [Palindromic number](https://en.wikipedia.org/wiki/Palindromic_number)  
 任何一个十进制的整形数字，都可以写成：
-x = a0*10^0 + a1*10^1 +a2*10^2 + ... + ak*10^k
+x = a0\*10^0 + a1\*10^1 +a2\*10^2 + ... + ak\*10^k
 当且仅当a[i] = a[k-i]时，x为回文数字。  
-例如： 121 = 1*10^0 + 2*10^1 + 1*10^2, 这时k=2，当i=0,时，a[0] = a[2-0] = 1。  
+例如： 121 = 1\*10^0 + 2\*10^1 + 1\*10^2, 这时k=2，当i=0,时，a[0] = a[2-0] = 1。  
 当i=1时，a[1] = a[2-1] = 2  
 所以，算法思路的核心就是在遍历每一位的同时，判断a[i]是否等于a[k-i]，如果等于则回文，反之则False。
 ```python
