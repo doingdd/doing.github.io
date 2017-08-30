@@ -76,7 +76,7 @@ heihei
 [root@localhost ~]# nl test|sed '2,3d'
      1  root:x:0:0:root:/root:/bin/bash
 ```
-**2.直接修改文件内容新增行和删除行 **   
+**2.直接修改文件内容新增行和删除行**    
 sed对文件直接操作的参数是-i, 所以在上例的基础上加上-i参数即可
 ```shell
 [root@localhost ~]# sed -i '2a heihei' test
