@@ -177,3 +177,4 @@ text = '男' if gender == 'male' else '女'
 >>> text = '男' if gender == 'male' else '女'
 >>> print text
 女
+```
