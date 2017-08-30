@@ -80,6 +80,25 @@ d.get('name', 'unknown')
 ```python
 d['name'] = d.get('name', 'doing')
 ```
+## 判断key值是否存在于字典中
+
+bad: 
+```python
+d = {'name': 'python'}
+
+if d.has_key('name'):
+    pass
+```
+good:
+```python
+if 'name' in d:
+    pass
+```
+## 字典推导式
+```python
+numbers = [1, 2, 3]
+d = {number: number * 2 for number in numbers}
+```
 
 ## 字符串连接：
 ```python
@@ -178,3 +197,4 @@ text = '男' if gender == 'male' else '女'
 >>> print text
 女
 ```
+
