@@ -47,7 +47,7 @@ vncpasswd
 ```shell
 [root@localhost ~]# systemctl enable vncserver@:1.service
 Created symlink from /etc/systemd/system/multi-user.target.wants/vncserver@:1.service to /etc/systemd/system/vncserver@:1.service.
-systemctl start vncserver@:1.service
+[root@localhost ~]# systemctl start vncserver@:1.service
 ```
 **Q1, 启动vncserver时报错：**  
 * [root@localhost ~]#  systemctl start vncserver@:1.service
