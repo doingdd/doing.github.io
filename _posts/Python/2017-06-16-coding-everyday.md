@@ -1,6 +1,6 @@
 ---
 layout: post
-category: 技术
+category: Python
 title: 每天一点coding
 ---
 **本文记录每天的coding题目**  
