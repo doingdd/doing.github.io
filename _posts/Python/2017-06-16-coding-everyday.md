@@ -511,3 +511,28 @@ class Solution(object):
         return not stack
 ```
 思路一致，写法简洁了不少，在if时少构造两个list，应该节省了很多时间。
+## LeetCode Q26. Remove Duplicates from Sorted Array
+**题目：**给定排序好的数字序列，要求返回去重后的序列长度,对长度之外的序列内容无要求  
+**要求：**不能新建数组，空间复杂度为O(1)  
+**例：** [1,1,2] 返回length=2，序列为[1,2...]  
+**例：** [1,2,3,3,3] 返回length=3，序列为[1,2,3...]  
+
+**思路：** 设两个指针，一个先跑，遍历数组，一个后跑，用于标记返回数组的最末位。然后循环对比这两个指针所指值是否相等，如果相等，则先跑的指针继续跑，后跑的不动，如果不相等，则交换两个指针所指的值。  
+```python
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not len(nums):
+            return 0
+        i = 0
+        for j in range(len(nums)):
+            if nums[i] != nums[j]:
+                i +=1 
+                nums[i] = nums[j]
+            
+        return i + 1
+```
+这道题没想出来，是参考答案之后写的，所以就不贴别人的代码了。这种双指针的思路一定要建立起来，是不是还可有类似的三指针四指针呢?
