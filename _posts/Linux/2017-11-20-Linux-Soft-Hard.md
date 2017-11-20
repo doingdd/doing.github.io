@@ -4,9 +4,10 @@ layout: post
 title: Linux里的两个“软硬”：软硬中断与软硬连接
 ---
 
-**本文讨论linux系统中涉及到的两个软和硬的概念，软硬中断和软硬连接。 ** 
-参考： [硬中断和软中断](http://blog.csdn.net/zhangskd/article/details/21992933)   
-    [Linux中断的上半部和下半部](https://www.cnblogs.com/sky-heaven/p/5746730.html)   
+**本文讨论linux系统中涉及到的两个软和硬的概念，软硬中断和软硬连接.**   
+参考：  
+[硬中断和软中断](http://blog.csdn.net/zhangskd/article/details/21992933)    
+    [Linux中断的上半部和下半部](https://www.cnblogs.com/sky-heaven/p/5746730.html)    
 **鸟哥Linux私房菜**
 ## 软中断和硬中断
 
