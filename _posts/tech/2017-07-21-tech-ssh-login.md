@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Python
+category: 技术
 title: linux ssh认证原理(转)
 ---
 **本文介绍ssh公玥认证原理，原文：**  
