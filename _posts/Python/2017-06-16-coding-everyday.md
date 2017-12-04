@@ -511,6 +511,7 @@ class Solution(object):
         return not stack
 ```
 思路一致，写法简洁了不少，在if时少构造两个list，应该节省了很多时间。
+
 ## LeetCode Q26. Remove Duplicates from Sorted Array
 **题目：**给定排序好的数字序列，要求返回去重后的序列长度,对长度之外的序列内容无要求  
 **要求：**不能新建数组，空间复杂度为O(1)  
