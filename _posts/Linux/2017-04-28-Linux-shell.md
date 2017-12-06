@@ -123,3 +123,18 @@ set: usage: set [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg ...]
 
 3
 ```
+
+## 双括号运算的区别
+今天偶然发现，ksh中的双括号可以浮点运算，而bash中的双括号会报错：
+```shell
+Single-0-0-1:/u/ainet/workplace/Ptools-# echo $0
+-ksh
+Single-0-0-1:/u/ainet/workplace/Ptools-# echo $((123.33/3))
+41.11
+
+Single-0-0-1:/u/ainet/workplace/Ptools-# bash
+Single-0-0-1:/u/ainet/workplace/Ptools-# echo $0
+bash
+Single-0-0-1:/u/ainet/workplace/Ptools-# echo $((123.33/3))
+bash: 123.33/3: syntax error: invalid arithmetic operator (error token is ".33/3")
+```
