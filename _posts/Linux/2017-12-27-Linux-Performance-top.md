@@ -8,7 +8,8 @@ title: Linux性能 -- top命令
 # top
 ## top 命令的输出解释
 
-首先放一张top命令的截图：
+首先放一张top命令的截图：  
+
 ![](http://oon3ys1qt.bkt.clouddn.com/top.png)
 
 ### 第一行
