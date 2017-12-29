@@ -1,7 +1,7 @@
 ---
 layout: post
 category: 技术
-title: MySQL基本概念及SQL常用语法
+title: MySQL基本概念
 ---
 
 **本文介绍MySQL的基本概念，包括关系型/非关系型数据库的区别，InnoDB的介绍，索引机制，锁机制，mysql数据类型和约束等概念。**    
