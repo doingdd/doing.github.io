@@ -84,7 +84,7 @@ CREATE TABLE `award` (
 
 唯一索引的创建：
 ```python
-CREATE UNIQUE INDEX account_UNIQUE_Index ON `award`(`account`);
+CREATE UNIQUE INDEX account_UNIQUE_Index ON award(account);
 ```
 
 ### 普通索引
@@ -92,15 +92,15 @@ CREATE UNIQUE INDEX account_UNIQUE_Index ON `award`(`account`);
 普通索引,这个是最基本的索引。  
 
 其sql格式是 
-`CREATE INDEX IndexName ON TableName(字段名 (length))` 或者 `ALTER TABLE TableName ADD INDEX IndexName(字段名 (length))`
+`CREATE INDEX IndexName ON TableName(列名 (length))` 或者 `ALTER TABLE TableName ADD INDEX IndexName(列名 (length))`
 
 第一种方式 :
 ```python
-  CREATE INDEX account_Index ON `award`(`account`);
+  CREATE INDEX account_Index ON award(account);
 ```
 第二种方式: 
 ```python
-ALTER TABLE award ADD INDEX account_Index(`account`)
+ALTER TABLE award ADD INDEX account_Index(account)
 ```
 ### 组合索引
 
