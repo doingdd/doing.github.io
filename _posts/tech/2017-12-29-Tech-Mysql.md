@@ -127,11 +127,11 @@ explain select * from `award` where nickname > 'rSUQFzpkDz3R' and account = 'DYx
 
 因为我的索引是 (nickname, account, created_time),如果第一个字段出现 **范围符号的查找**,那么将不会用到索引,如果我是第二个或者第三个字段使用范围符号的查找,那么他会利用索引,利用的索引是(nickname)
 
-###全文索引
+### 全文索引
 
 文本字段上(text)如果建立的是普通索引,那么只有对文本的字段内容前面的字符进行索引,其字符大小根据索引建立索引时申明的大小来规定.
 
-如果文本中出现多个一样的字符,而且需要查找的话,那么其条件只能是 where column lick '%xxxx%' 这样做会让索引失效
+如果文本中出现多个一样的字符,而且需要查找的话,那么其条件只能是 where column like '%xxxx%' 这样做会让索引失效
 
 .这个时候全文索引就祈祷了作用了
 ```python
@@ -143,6 +143,15 @@ SELECT * FROM tablename
 WHERE MATCH(column1, column2) AGAINST(‘xxx′, ‘sss′, ‘ddd′)
 ```
 这条命令将把column1和column2字段里有xxx、sss和ddd的数据记录全部查询出来。  
+
+### 索引的失效条件
+参考：[哪些情况下索引会失效](https://www.cnblogs.com/hongfei/archive/2012/10/20/2732589.html)  
+
+总结起来就是：  
+1. 使用"or"关键字而且不是每一个or的条件域都带索引。  
+2. 通配符在前面：where sth like "%name"。  
+3.组合索引，没有使用“最左前缀”。  
+4.字符串没有使用引号括起来。  
 
 ## 4. MySQL 数据类型
 
