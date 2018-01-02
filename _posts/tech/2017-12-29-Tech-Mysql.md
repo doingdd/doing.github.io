@@ -45,7 +45,7 @@ InnoDB的优势简单总结：
 **外键：**  Foreign Key机制保证了在不同表之间的增删改查的时候数据的一致性。  
 
 关于锁和事务处理机制的解释可以**参考**这篇文章[MySQL--锁](http://blog.csdn.net/xifeijian/article/details/20313977)   
-
+ 
 **注意： ** InnoDB的行锁实际上仅在where选取的域是其主键时有效，其他情况仍然是表锁。  
 
 ## 3. 索引
@@ -150,8 +150,8 @@ WHERE MATCH(column1, column2) AGAINST(‘xxx′, ‘sss′, ‘ddd′)
 总结起来就是：  
 1. 使用"or"关键字而且不是每一个or的条件域都带索引。  
 2. 通配符在前面：where sth like "%name"。  
-3.组合索引，没有使用“最左前缀”。  
-4.字符串没有使用引号括起来。  
+3. 组合索引，没有使用“最左前缀”。  
+4. 字符串没有使用引号括起来。  
 
 ## 4. MySQL 数据类型
 
