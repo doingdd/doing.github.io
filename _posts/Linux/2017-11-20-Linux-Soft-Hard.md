@@ -54,6 +54,7 @@ linux 中断分为两个半部，其中上半部负责的是“中断登记”�
 每种操作系统支持的文件系统格式都不尽相同，Windows98前是FAT(FAT16), Windows2000后出现了NTFS文件系统，而Linux的正规文件系统则为**Ext2**（Linux second extended file system, EXt2fs)，当然linux还有**ext3，ext4**，**brtfs, xfs**等等(brtfs目的取代ext3，支持copy on write(COW)，xfs较ext4也优点颇多)。  
 ```python
 ## 怎么判断自己的文件系统类型？
+## 使用df 命令可以判断
 # File system: btrfs
 [root@localhost ~]# df -T -h
 Filesystem     Type      Size  Used Avail Use% Mounted on
@@ -78,6 +79,19 @@ tmpfs          tmpfs      13G     0   13G   0% /run/user/0
 UUID=dda847d9-5d2c-4c9d-94d8-b94e52e1689c /boot                   xfs     defaults        0 0
 /dev/mapper/centos-swap swap                    swap    defaults        0 0
 
+## ext2系列的文件系统可以用dumpe2fs命令查看信息
+## xfs系列的文件系统可以用xfs_info来查看：
+[root@localhost temp]# xfs_info /dev/sda1
+meta-data=/dev/sda1              isize=256    agcount=4, agsize=32000 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=0        finobt=0
+data     =                       bsize=4096   blocks=128000, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=0
+log      =internal               bsize=4096   blocks=853, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+## 计算容量： agcount（group 个数） * agsize(每个组有多少个block) * bsize(block size) = 容量(byte)
 ```
 
 文件系统的实现是针对文件数据而言的，通常除了文件内容本身，文件数据还包括许多其他的属性，例如Linux系统的rwx权限，文件属性(用户、用户组、时间等),文件系统会把这两大部分内容分别存放在不同的块，**权限与属性相关的存放在inode中，文件的实际数据则存放在block data中，还有一个超级块(super block)记录文件系统的整体信息，包括inode域block的总量，使用量，剩余量等。**  
