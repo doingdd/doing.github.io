@@ -10,7 +10,7 @@ title: 基于Python和百度语音识别实现的音乐播放器
 
 **基于pyaudio库和wave库进行录音和播放wav格式的音频文件，基本实现录音+识别+播放歌曲的功能**  
 
-完整程序地址： []()
+完整程序地址： [Python_BaiduAPI_music_player](https://github.com/doingdd/Python_BaiduAPI_music_player)
 # 录音
 
 录音使用pyaudio实现，因为想实现一个功能就是让程序一直待命，知道判断出一个特定的唤醒词的时候，开始播放。  
