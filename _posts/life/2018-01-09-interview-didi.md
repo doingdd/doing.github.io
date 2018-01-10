@@ -1,6 +1,6 @@
 ---
 title: Interview of didi
-category: lift
+category: life
 layout: post
 ---
 
