@@ -1,10 +1,9 @@
 ---
-title: Interview of didi
+title: Interview of 滴滴
 category: life
 layout: post
 ---
 
-# 一面
 
 ## 1. 自我介绍，介绍软件的架构
 
