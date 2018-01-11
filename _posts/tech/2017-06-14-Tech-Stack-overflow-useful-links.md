@@ -32,3 +32,5 @@ title: Stack Overflow收藏汇总
 
 9.[Linux shell中各种括号的用法](http://www.dwhd.org/20150708_211624.html)
 介绍了shell中各种括号的用法，比较详细，包括shell的数学运算，没介绍正则中括号的用法。
+
+10. [shell 文件执行：source,sh,"./"的区别](https://www.cnblogs.com/pcat/p/5467188.html)
