@@ -1,5 +1,5 @@
 ---
-layout: post
+layout： post
 category: life
 title: interview--百度
 ---
