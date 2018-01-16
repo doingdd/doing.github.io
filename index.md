@@ -4,7 +4,7 @@ layout: post
 ---
 ## Why blog
 一直以来有记笔记的习惯，电脑里的word文档洋洋洒洒，也乱七八糟。看了几篇blog种种好处的文章，决定把之前的和以后的笔记放在我的blog。  
-通过碎片化知识整理，加强基本功。坚持不能让blog成为收藏夹。
+通过碎片知识整理，加强基本功。坚持不能让blog成为收藏夹。
 ## What blog
 python，virtualization，linux 是目前最想要提升的方面。    
 为了写好blog，github，jekyll，markdown，也需要尽快熟悉。
