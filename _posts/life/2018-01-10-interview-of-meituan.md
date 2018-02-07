@@ -48,8 +48,8 @@ f('')
 
 ## 4.项目经历，讲解做过的和web相关的项目
 
-这里拿python爬虫做了举例，详细列出了程序的整个流程，和使用的模块，详见：
-[](http://doing.cool/2017/07/13/Spider-Liepin-tester-job.html)  
+这里拿python爬虫做了举例，详细列出了程序的整个流程，和使用的模块，详见：  
+[猎聘爬虫测试开发岗](http://doing.cool/2017/07/13/Spider-Liepin-tester-job.html)  
 
 ## 5. 项目经历，讲解实现的性能测试自动化脚本结构
 
