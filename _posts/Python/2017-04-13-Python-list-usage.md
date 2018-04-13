@@ -9,7 +9,7 @@ category: Python
 # 1. 序列的通用操作
 ##  索引
 list的定义及索引：
-
+```
 	>>> number = [1, 2, 3, 'Tom', 'James']
 	>>> number[0]
 	1
@@ -18,13 +18,13 @@ list的定义及索引：
 	>>> mix = ['Yidu', number]
 	>>> mix[1]
 	[1, 2, 3, 'Tom', 'James']
-
+```
 注意，索引的下标从**0**开始
 
 ##  分片
 
 索引是访问单个元素，分片是访问一定范围的元素，举例：  
-
+```
 	#使用range函数创建一个list	
 	>>> numbers = range(10)
 	>>> numbers
@@ -32,6 +32,7 @@ list的定义及索引：
 	#注意，"0:9"选取范围包括"第0个"，不包括"第9个"
 	>>> numbers[0:9]
 	[0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
 ## pythonic way of list using
 列出全部元素：
 
