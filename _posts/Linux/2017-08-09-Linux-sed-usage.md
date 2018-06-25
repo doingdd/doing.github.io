@@ -190,3 +190,13 @@ c,d
 
 `;`不同的命令用分号隔开  
 
+**&号的用法**  
+```shell
+echo hello|sed 's/hello/(&)/'
+(hello)
+
+sed -i -e 's/^.*dump.sh/#&/' control.sh
+```
+&号就表示匹配的内容本身，上面第一行中就表示hello，然后给hello加了个括号   
+第二行就是匹配"dump.sh"，如果匹配到就在前面加井号，注释掉，注意sed是以行为单位的，所以第二行会把文件中所有包含dump.sh的行注释掉
+
