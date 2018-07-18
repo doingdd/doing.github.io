@@ -43,8 +43,8 @@ exit [n]
 [进入子shell的各种情况分析](https://blog.csdn.net/ma524654165/article/details/77673082)
 
 这里简单记录几个exit不能达到预期的情况：
-1. getopts
-2. && || (echo "hei" && exit)
-3. cat a| while read line;do
-4. echo $(echo $BASHPID)
+1. `getopts`
+2. `&& || (echo "hei" && exit)`
+3. `cat a| while read line;do`
+4. `echo $(echo $BASHPID)`
 	
