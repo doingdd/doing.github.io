@@ -40,3 +40,7 @@ title: 有用的收藏汇总
 
 12. [UTF8 or UTF-8?](https://stackoverflow.com/questions/41680533/is-coding-utf-8-also-a-comment-in-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)   
 介绍了python中声名文件编码类型的办法和原理，重点是python的正则匹配规则
+
+13. [Find and kill a process in one line using bash and regex](https://stackoverflow.com/questions/3510673/find-and-kill-a-process-in-one-line-using-bash-and-regex)   
+介绍了shell中如何优雅的kill掉一个进程，其中grep [p]rocess这种加中括号的方法非常之tricky
+
