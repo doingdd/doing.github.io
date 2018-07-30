@@ -143,8 +143,53 @@ sed工具默认支持基础正则，加-r参数可以支持扩展正则。
 **awk:**  
 awk严格说可以算是一种语言了，有自己的语法和格式，试验得到支持扩展正则，留待以后整理。
 
+## 补充点零宽断言的用法
+在shell中，经常会遇到这种情况：  
+在如下字符串中：  
+`http://2.20.16.61:12000/?key=%CA%D6%BB%FA&pagesize=120&enc_url_gbk`  
 
+想要拿到key=后面的key的值，但是不需要`key=`这几个字符，我们用python的group很容易拿到：  
+```python
+>>> import re
+>>> a = 'http://2.20.16.61:12000/?key=%CA%D6%BB%FA&pagesize=120&enc_url_gbk'
+>>> re.search(r'key=(.*?)&',a).group()
+'key=%CA%D6%BB%FA&'
+>>> re.search(r'key=(.*?)&',a).group(1)
+'%CA%D6%BB%FA'
+```
 
+用shell的话，**sed**可以通过替换字符串
 
+```hell
+$ str='http://2.20.16.61:12000/?key=%CA%D6%BB%FA&pagesize=120&enc_url_gbk'
+$ echo $str |sed 's/.*key=//'|sed 's/&.*//'
+%CA%D6%BB%FA
+```
 
+但是用**grep**的话，就只能使用零宽断言了，因为正常的使用正则的话只能把`key=`一起匹配上：
+```shell
+$ echo $str |grep -Po 'key=.*?&'
+key=%CA%D6%BB%FA&
+```
+使用零宽断言里的正向回顾断言的语法可以搞定`(?<=exp)`
+```shell
+echo $str |grep -Po '(?<=key=).*?&'
+%CA%D6%BB%FA&
+```
+**零宽断言详细解释： [百度百科-零宽断言](https://baike.baidu.com/item/%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80)**  
 
+**简单总结零宽断言：**  
+零宽断言分两大类：正向和负向，简单理解正向就是匹配有的，负向就是匹配没有的(类似与正则里的`^`符号)  
+  
+每一类又分预测零宽断言和回顾零宽断言，简单理解就是定义的断言字符串在前面--就是回顾，在后面--就是预测
+
+**举例:**  
+
+名称|reg|举例
+---|---|---
+正回顾后发|(?<=reg)|echo key=123｜grep -Po '(?<=key=).*', 输出123
+正预测先行|(?=reg)|echo key=123｜grep -Po '.*(?==123)', 输出key
+负回顾后发|(?<!exp)|echo "key1 Key2"｜grep -Po '(?<!k)ey.',输出ey2
+负预测先行|(?!exp)|echo "key1 Key2"｜grep -Po '.*y(?!2)'
+
+话说这都什么反人类的名字，就正(负)回顾,正(负)预测就完了呗
