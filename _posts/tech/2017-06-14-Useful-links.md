@@ -44,3 +44,5 @@ title: 有用的收藏汇总
 13. [Find and kill a process in one line using bash and regex](https://stackoverflow.com/questions/3510673/find-and-kill-a-process-in-one-line-using-bash-and-regex)   
 介绍了shell中如何优雅的kill掉一个进程，其中grep [p]rocess这种加中括号的方法非常之tricky
 
+14. [stack and heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap)    
+介绍了堆和栈的特点和区别，它们本质上是内存的不同分配方式
