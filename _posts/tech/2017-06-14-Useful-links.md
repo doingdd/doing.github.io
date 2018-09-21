@@ -46,3 +46,7 @@ title: 有用的收藏汇总
 
 14. [stack and heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap)    
 介绍了堆和栈的特点和区别，它们本质上是内存的不同分配方式
+
+15. [difference between "Redirection" and "Pipe"](https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe)  
+介绍了重定向">"和管道"|"之间的区别，及为什么不能用一个代替另外一个，简单说就是输出不同，一个给文件，一个给程序  
+
