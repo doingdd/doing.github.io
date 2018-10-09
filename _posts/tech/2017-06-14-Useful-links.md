@@ -50,3 +50,5 @@ title: 有用的收藏汇总
 15. [difference between "Redirection" and "Pipe"](https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe)  
 介绍了重定向">"和管道"|"之间的区别，及为什么不能用一个代替另外一个，简单说就是输出不同，一个给文件，一个给程序  
 
+16. [fix a broken pipe error](https://superuser.com/questions/554855/how-can-i-fix-a-broken-pipe-error)   
+linux中的broken pipe error发生的原因，也简单说明了pipe的工作机制  
