@@ -52,3 +52,7 @@ title: 有用的收藏汇总
 
 16. [fix a broken pipe error](https://superuser.com/questions/554855/how-can-i-fix-a-broken-pipe-error)   
 linux中的broken pipe error发生的原因，也简单说明了pipe的工作机制  
+
+17. [delete huge file in linux](https://www.tecmint.com/empty-delete-file-content-linux/)   
+删除大文件，核心思路就是利用重定向  
+

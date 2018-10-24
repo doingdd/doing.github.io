@@ -4,7 +4,9 @@ category: Linux
 title: Linux sed命令用法
 ---
 
-**本文详细介绍sed的用法，不定期更新**  
+**本文详细介绍sed的用法，不定期更新**    
+[sed简明教程](https://coolshell.cn/articles/9104.html)   
+
 sed是将数据按行操作的文本处理工具，可以分析standard input，可以对数据进行替换，删除，新增，选取特定行等功能，默认支持基础正则，可以加-r参数支持扩展正则。  
 
 基本的用法规则如下：
@@ -199,4 +201,23 @@ sed -i -e 's/^.*dump.sh/#&/' control.sh
 ```
 &号就表示匹配的内容本身，上面第一行中就表示hello，然后给hello加了个括号   
 第二行就是匹配"dump.sh"，如果匹配到就在前面加井号，注释掉，注意sed是以行为单位的，所以第二行会把文件中所有包含dump.sh的行注释掉
+
+**分隔符的用法**  
+sed中的分隔符不仅可以使用默认的`/`，还可以用`%`,`:`和`,`等，而且可以直接使用不用任何声名，其目的就是为了区分pattern中的特殊符号，如果：  
+将`/etc/my`替换成`/etc/your`：  
+```shell
+[duying23@BJYFF3-Client-198134 ~]$ echo '/etc/my' |sed 's:/etc/my:/etc/your:g'
+/etc/your
+[duying23@BJYFF3-Client-198134 ~]$ echo '/etc/my' |sed 's/\/etc\/my//etc/your/g'
+sed: -e expression #1, char 15: unknown option to `s'
+[duying23@BJYFF3-Client-198134 ~]$ echo '/etc/my' |sed 's/\/etc\/my/\/etc\/your/g'
+/etc/your
+[duying23@BJYFF3-Client-198134 ~]$ echo '/etc/my' |sed 's%/etc/my%/etc/your%g'
+/etc/your
+[duying23@BJYFF3-Client-198134 ~]$ echo '/etc/my' |sed 's,/etc/my,/etc/your,g'
+/etc/your
+
+```  
+可以看到如果pattenr里有`/`还用`/`做分隔符的话必须用`\`转义，否则报错，其它符号同理
+
 
