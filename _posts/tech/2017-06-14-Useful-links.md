@@ -56,3 +56,8 @@ linux中的broken pipe error发生的原因，也简单说明了pipe的工作机
 17. [delete huge file in linux](https://www.tecmint.com/empty-delete-file-content-linux/)   
 删除大文件，核心思路就是利用重定向  
 
+18. [how-to-use-grep-efficiently](https://stackoverflow.com/questions/5200591/how-to-use-grep-efficiently)  
+grep使用不同方法的效率对比，最高的是用find+xargs
+
+19. [lost+found](https://unix.stackexchange.com/questions/18154/what-is-the-purpose-of-the-lostfound-folder-in-linux-and-unix)  
+介绍什么是lost+found文件夹，用于存放系统损坏或意外关机导致的损坏的文件，给fsck恢复使用的
