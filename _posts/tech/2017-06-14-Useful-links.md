@@ -61,3 +61,22 @@ grep使用不同方法的效率对比，最高的是用find+xargs
 
 19. [lost+found](https://unix.stackexchange.com/questions/18154/what-is-the-purpose-of-the-lostfound-folder-in-linux-and-unix)  
 介绍什么是lost+found文件夹，用于存放系统损坏或意外关机导致的损坏的文件，给fsck恢复使用的
+
+20. [遍历json](https://stackoverflow.com/questions/21028979/recursive-iteration-through-nested-json-for-specific-key-in-python)  
+非常叼的递归调用，稍加改动，可以打印出每个json的值以及它的父节点：  
+```python
+def dic_generator(dict_var):
+    for k,v in dict_var.items():
+        if isinstance(v,dict):
+            for k_var in dic_generator(v):
+                yield '{0}-->{1}'.format(k,k_var)
+        else:
+            yield '{0}-->{1}'.format(k,v)
+a = {"2975501":{"miss_key_base":"partition","profile":{"version_id":"20190319000001->20190319094654"}}}
+for i in dic_generator(a):
+    print i
+运行结果：
+2975501-->profile-->version_id-->20190319000001->20190319094654
+2975501-->miss_key_base-->partition
+
+```
