@@ -537,3 +537,18 @@ class Solution(object):
         return i + 1
 ```
 这道题没想出来，是参考答案之后写的，所以就不贴别人的代码了。这种双指针的思路一定要建立起来，是不是还可有类似的三指针四指针呢?
+
+## dict 展开
+```python
+
+def flatten(obj):
+    for i,v in obj.items():
+        if isinstance(v, dict):
+            for i,v in flatten(v):
+               yield (i,v)
+        else:
+            yield (i,v)
+line_c = {0:1,2:{1:2,3:4}}
+dict([item for item in flatten(line_c)])
+
+```
