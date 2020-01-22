@@ -62,7 +62,7 @@ ROLLBACK; /* lock-based DIRTY READ */
 
 在read uncommited 隔离级别中，唯一需要避免的是乱序更新，及先更新的结果要早于后更新的结果出现在结果集中
 
-### 不可重复度(non repeatable read)
+### 不可重复读(non repeatable read)
 在同一个事务中读取两次，得到的结果不一样，这一现象成为不可重复读。
 
 不可重复度发生在：当select的时候还没有加读锁，或者读锁刚刚被释放   
@@ -157,7 +157,7 @@ SERIALIZABLE隔离时，T1第一次query会lock住10-30(rang lock)，T2会等T1�
 
 最低级，就是完全没有隔离，A读数据，B此时在更新，但是还没有commit，rollback了，这时A读到的数据居然是B更新之后的，也就是脏的数据，赃读
 
-### 提交度(read committed)
+### 提交读(read committed)
 
 那加上一个限制吧，A读取的数据必须是其它人commit过后的，但还是有问题，A读了一次数据，B更新并commit，A又想读一次，发现和第一次不一样了，也就是“读”同一个数据的操作“不可重复”，发生了不可重复读。 也就是对一个事务来说，它“感知”到了其它事务的存在，仍然不太好
 
