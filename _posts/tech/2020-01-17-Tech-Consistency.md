@@ -4,7 +4,7 @@ category: 技术
 title: 数据库一致性
 ---
 
-**本文翻译自[wiki: isolation](https://en.wikipedia.org/wiki/Consistency_（database_systems）)**
+**本文翻译自[wiki: consistency](https://en.wikipedia.org/wiki/Consistency_（database_systems）)**
 
 一致性的意思是任何事务只能在允许的方式下修改数据，所有写入必须经过[约束](https://en.wikipedia.org/wiki/Data_integrity),[级联](https://en.wikipedia.org/wiki/Rollback_(data_management)#Cascading_rollback),[触发](https://en.wikipedia.org/wiki/Database_trigger),或者它们任意组合验证合法才可以生效。它保证不了所有事务都按照程序希望的结果执行(这是应用代码的职责)，仅仅是任何编码错误都不会导致任何违反已定的数据库约束的情况发生。
 

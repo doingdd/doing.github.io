@@ -4,7 +4,7 @@ category: 技术
 title: 数据库原子性
 ---
 
-**本文翻译自[wiki: isolation](https://en.wikipedia.org/wiki/Atomicity_\(database_systems\) )**
+**本文翻译自[wiki: atomicity](https://en.wikipedia.org/wiki/Atomicity_\(database_systems\) )**
 
 原子性(atomicity),是数据库特性ACID中的A，一个原子化的事务是不可分割、无法简化的一些列数据库操作，只能全部发生，或者全部不发生。在某些“部分更新”会造成比“全部不更新”更坏的影响时，原子化可以保证“部分更新”不会发生。结果就是，一个原子化的事务是不会被其它数据库客户端感知到正在运行中这个状态的。在某一时刻，该事务还未发生，在下一时刻，它已经完全执行完成了(或者什么都没有执行)。
 
