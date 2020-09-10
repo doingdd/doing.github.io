@@ -248,3 +248,82 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 目前看这几个例子并没有看出装饰器property有什么优势？感觉也没有省掉很多代码量，期待后续的学习会有所收获。
+
+###多个装饰器的执行顺序
+对于简单定义的多个装饰器装饰的函数，其调用的顺序就是从上到下的，比如：
+```python
+def dec1(func):
+    #print 'out 1'
+    def wrapper():
+        print 'inner 1'
+        func()
+
+    return wrapper
+
+def dec2(func):
+    #print 'out 2'
+    def wrapper():
+        print 'inner 2'
+        func()
+
+    return wrapper
+
+```
+定义一个测试函数，用两个装饰器包起来：
+```python
+@dec1
+@dec2
+def run():
+    print "run"
+
+run()
+
+```
+执行结果是：
+```python
+inner 1
+inner 2
+run
+```
+可以看到是从上到下执行的，但是如果把dec中的两行print注释打开，发现顺序有变化：
+```python
+def dec1(func):
+    print 'out 1'
+    def wrapper():
+        print 'inner 1'
+        func()
+
+    return wrapper
+
+def dec2(func):
+    print 'out 2'
+    def wrapper():
+        print 'inner 2'
+        func()
+
+    return wrapper
+
+@dec1
+@dec2
+def run():
+    print "run"
+
+run()
+
+#执行结果：
+out 2
+out 1
+inner 1
+inner 2
+run
+
+```
+先打印了out2，这是因为在函数的定义阶段，python解释器检测到@语法糖，会对run函数进行一次“从里到外”的定义，可以理解成：   
+1.run函数先被dec2包了一层，这时执行了dec2函数，但并未执行dec2里的wrapper，print out 2  
+ 
+2.run函数又被dec1包了一层，这是执行了dec1函数，同样，也不涉及wrapper的执行  print out 1
+
+3.定义完成，调用run()函数时，先执行最外层的dec2定义的好的wrapper， print inner 1  
+
+4.再执行最里层的dec1定义好的wrapper，print inner 2 
+
