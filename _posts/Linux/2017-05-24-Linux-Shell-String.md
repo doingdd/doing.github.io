@@ -99,6 +99,11 @@ ${string/substring/replacement}|使用replacement替代第一个substring
 ${string//substring/replacement}|使用replacement替代所有sbustring   
 ${string/#substring/replacement}|如果string的前缀匹配substring，那么用replacement替换substring  
 ${string/%substring/replacement}|如果string的后缀匹配substring，那么用replacement替换substring  
+${string^}|字符串首字母改大写，如果两个^^则是全部字符改大写
+${string,}|字符串首字母改小写，如果两个,,则是全部字符该小写
+${string,H} 和 ${string^H}|仅匹配首字母为”H"则修改，不为H则不变
+${!prefix*}|匹配prefix开头的所有变量名称
+
 
 **这一组还是比较直观的，比如字符串删除功能： #号代表从开头匹配，%代表从结尾，两个#或者%代表最长匹配；**      
 **还有字符串替换功能：一个/代表替换第一个，//则代表全部替换, /#则是开头匹配，/%是结尾匹配。**      
