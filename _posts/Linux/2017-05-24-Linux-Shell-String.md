@@ -90,7 +90,7 @@ Yoo-Yoo
 :---:|:---:  
 ${#string}|$string的长度  
 ${string:position}|string中，从位置$position开始提取字符串  
-${string:position:length}|string中，从位置$position开始提取长度为length的字符串  
+${string:position :length}|string中，从位置$position开始提取长度为length的字符串  
 ${string#substring}|string中，从头开始匹配substring（最短匹配）并删除，如果没匹配则输出string  
 ${string##substring}|string中，从头开始匹配substring（最长匹配）并删除，如果没匹配则输出string  
 ${string%substring}|从string结尾开始匹配(最短匹配)并删除，如果没匹配则输出string  
