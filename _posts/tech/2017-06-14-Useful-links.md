@@ -82,8 +82,18 @@ for i in dic_generator(a):
 
 ```
 
+
 21. [login/non-login shell](https://stackoverflow.com/questions/216202/why-does-an-ssh-remote-command-get-fewer-environment-variables-then-when-run-man)
 交互/非交互 shell, login/non-login shell的简单解释，及其加载环境变量文件的情况，不过有一点说的不对，他说ssh是non-login的shell，其实应该是login的shell
 
 22. [python-json,获取str类型的(不要unicode类型)](https://stackoverflow.com/questions/956867/how-to-get-string-objects-instead-of-unicode-from-json)
 使用object_hook的方式，重写json loads函数，在python2中适用，python3中json已经实现了
+
+23. [python time complexity(python各个数据类型对应操作的时间复杂度)](https://wiki.python.org/moin/TimeComplexity)   
+len的时间复杂度对任何数据类型都是O(1) 
+
+24. [Golang调度器之GMP模型(go的gmp模型是怎么实现goroutine的)](https://www.cnblogs.com/sunsky303/p/9705727.html)  
+goroutine类似协程，不同于协程在一个线程内执行任务，goroutine在语言层面实现了多个任务在多个线程内并发执行,可以理解为多个线程版的协程，相当于python中的多进程+协程  
+G表示go的调度对象，M表示machine，即操作系统的线程，P表示processor，负责将G放到M上执行  
+
+
